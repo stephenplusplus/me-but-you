@@ -1,0 +1,7 @@
+{
+  "name": "me-but-you",
+  "version": "0.0.0",
+  "dependencies": {
+    "showup": "~0.0.2"
+  }
+}
