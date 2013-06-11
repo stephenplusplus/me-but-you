@@ -257,9 +257,13 @@ I of course meant appetizers. Grab some cheese sticks, then meet me in a little 
 
 ## Let's Create an Application
 
-Let's not get too crazy with this application. You probably have your own ideas for what you're looking to create. Like Yeoman himself, I won't tell you what to do, I'll just help you do it-- with one caveat: let's use Backbone to see how other generators work!
+To get a feel for some other Yeoman generators, let's try out Backbone. We'll just create a simple blog using Backbone routes and views, with posts written in Markdown.
 
-Real quick:
+```
+$ Sound good?: (Y/n)
+```
+
+I'll assume you entered "Y". We ride! But first:
 
 ```
 # install the Backbone generator:
@@ -269,9 +273,9 @@ $ npm install -g generator-backbone
 $ yo backbone
 ```
 
-Again, pop in a couple `No`s so we're on the same page.
+Again, pop in some `No`s to any questions you are asked so we're on the same page.
 
-Things should feel quite familiar after our experience with the web app generator. You still have an `app` directory, with `scripts/`, `styles/` and an `index.html`.
+Open your new app in your editor. Things should feel quite familiar after our experience with the web app generator. You still have an `app` directory, with `scripts/`, `styles/` and an `index.html`.
 
 Before we start editing files, run:
 
@@ -292,7 +296,7 @@ Search results:
     showdown git://github.com/coreyti/showdown.git
 ```
 
-Bower lets you search for what you need. The above command confirmed that the library we want to use, Showdown, is in the Bower repository. Now, to install it:
+Bower lets you search for what you need. Were you to type `bower search backbone`, you would see quite a few results of various plug-ins and libraries. The above command confirmed that the library we want to use, Showdown, is in the Bower repository. Now, to install it:
 
 ```
 $ bower install showdown
@@ -303,7 +307,7 @@ bower checking out showdown#v0.3.1
 bower installing showdown#0.3.1
 ```
 
-Now that Bower just awesomed all over our application, go into `app/index.html` and update the `scripts/vendor` comment block:
+Now that Bower has awesomed all over our application, go into `app/index.html` and update the `scripts/vendor` comment block:
 
 ```html
 <!-- build:js scripts/vendor.js -->
@@ -316,13 +320,4 @@ Now that Bower just awesomed all over our application, go into `app/index.html` 
 
 When you save the file, your browser will refresh, and you'll have the new library included and ready to play with.
 
-
-### What We're Making
-
-Let's talk a bit about what kind of app we're working towards. We'll just create a simple blog using Backbone routes and views, with posts written in Markdown.
-
-```
-$ Sound good?: (Y/n)
-```
-
-I'll assume you entered "Y". We ride!
+[Showdown](https://github.com/coreyti/showdown) lets us feed it a string of Markdown and get HTML back.
