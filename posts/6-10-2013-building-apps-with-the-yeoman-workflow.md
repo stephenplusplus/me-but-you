@@ -287,19 +287,10 @@ As we talked about earlier, this starts the server, sets up watches on our files
 
 We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
 
-Open up another terminal window/tab, and `cd` back into the app's directory. Then, run:
+[Showdown](https://github.com/coreyti/showdown) lets us feed it a string of Markdown and get HTML back. We should be able to make good use of this in our application. Open up another terminal window, `cd` back into the app's directory, then run:
 
 ```
-$ bower search showdown
-Search results:
-
-    showdown git://github.com/coreyti/showdown.git
-```
-
-Bower lets you search for what you need. Were you to type `bower search backbone`, you would see quite a few results of various plug-ins and libraries. The above command confirmed that the library we want to use, Showdown, is in the Bower repository. Now, to install it:
-
-```
-$ bower install showdown
+$ bower install showdown --save
 bower cloning git://github.com/coreyti/showdown.git
 bower cached git://github.com/coreyti/showdown.git
 bower fetching showdown
@@ -307,17 +298,58 @@ bower checking out showdown#v0.3.1
 bower installing showdown#0.3.1
 ```
 
+Bower also lets you search for what you need. Let's see if an Underscore helper library is available.
+
+```
+$ bower search underscore.string
+Search results:
+
+    underscore.string git://github.com/epeli/underscore.string.git
+```
+
+Woot! Now, just install it:
+
+```
+$ bower install underscore.string --save
+```
+
 Now that Bower has awesomed all over our application, go into `app/index.html` and update the `scripts/vendor` comment block:
 
 ```html
 <!-- build:js scripts/vendor.js -->
-<script src="bower_components/jquery/jquery.min.js"></script>
-<script src="bower_components/underscore/underscore-min.js"></script>
-<script src="bower_components/backbone/backbone-min.js"></script>
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/underscore.string/lib/underscore.string.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
 <script src="bower_components/showdown/compressed/showdown.js"></script>
 <!-- endbuild -->
 ```
 
-When you save the file, your browser will refresh, and you'll have the new library included and ready to play with.
+When you save the file, your browser will refresh and you'll have the new libraries included and ready to play with.
 
-[Showdown](https://github.com/coreyti/showdown) lets us feed it a string of Markdown and get HTML back.
+Let's set ourselves up with a structure that makes sense for our application:
+
+```
+$ yo backbone:view post
+   create app/scripts/templates/post.ejs
+   create app/scripts/views/post-view.js
+
+$ yo backbone:view index
+    create app/scripts/templates/index.ejs
+    create app/scripts/views/index-view.js
+
+$ yo backbone:router post
+   create app/scripts/routes/post-router.js
+```
+
+```html
+<!-- build:js scripts/main.js -->
+<script src="scripts/main.js"></script>
+<script src="scripts/templates.js"></script>
+<script src="scripts/views/post-view.js"></script>
+<script src="scripts/views/index-view.js"></script>
+<script src="scripts/routes/post-router.js"></script>
+<!-- endbuild -->
+```
+
+Oh, well, would you look at that!
