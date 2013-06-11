@@ -243,7 +243,7 @@ The aforementioned "several other Grunt tasks" are:
 
 `connect:` Creates a local server, watches for changes to your source files, then triggers a reload in your browser.
 
-`open:` Opens the server instance, typically `localhost:3000` in your browser
+`open:` Opens the server instance, typically `localhost:9000` in your browser
 
 Make an edit or two in the source files to see the change reflected in the browser. Like I said above, this is about as easy as it can be. It just works.
 
@@ -281,3 +281,48 @@ $ grunt server
 
 As we talked about earlier, this starts the server, sets up watches on our files, blah blah yipsie-doodle.
 
+We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
+
+Open up another terminal window/tab, and `cd` back into the app's directory. Then, run:
+
+```
+$ bower search showdown
+Search results:
+
+    showdown git://github.com/coreyti/showdown.git
+```
+
+Bower lets you search for what you need. The above command confirmed that the library we want to use, Showdown, is in the Bower repository. Now, to install it:
+
+```
+$ bower install showdown
+bower cloning git://github.com/coreyti/showdown.git
+bower cached git://github.com/coreyti/showdown.git
+bower fetching showdown
+bower checking out showdown#v0.3.1
+bower installing showdown#0.3.1
+```
+
+Now that Bower just awesomed all over our application, go into `app/index.html` and update the `scripts/vendor` comment block:
+
+```html
+<!-- build:js scripts/vendor.js -->
+<script src="bower_components/jquery/jquery.min.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="bower_components/backbone/backbone-min.js"></script>
+<script src="bower_components/showdown/compressed/showdown.js"></script>
+<!-- endbuild -->
+```
+
+When you save the file, your browser will refresh, and you'll have the new library included and ready to play with.
+
+
+### What We're Making
+
+Let's talk a bit about what kind of app we're working towards. We'll just create a simple blog using Backbone routes and views, with posts written in Markdown.
+
+```
+$ Sound good?: (Y/n)
+```
+
+I'll assume you entered "Y". We ride!
