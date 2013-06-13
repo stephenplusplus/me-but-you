@@ -40,7 +40,7 @@ Let's take a second to break apart what that `yo webapp` command really did.
 This is an OS X, Linux, and Windows friendly system-wide command that scours your hard drive for any installed "generators," then gives them control based on the next argument:
 
 ### `webapp`
-This is actually a separate plug-in, or "generator," called `generator-webapp`. Yeoman recognizes other `generator-____` Node modules, which opens the door for Backbone, AngularJS, and countless other you-name-it generators.
+This is actually a separate plug-in, or "generator," called `generator-webapp`. Yeoman recognizes other `generator-____` Node modules, which opens the door for using Backbone, AngularJS, and countless other you-name-it generators.
 
 Something important to take away from this is it's the `generator-webapp` module that prompts us with questions. The same goes for any other generators we install. They are maintained by the community, not necessarily the Yeoman team members themselves.
 
@@ -61,7 +61,7 @@ Grunt is a JavaScript-based task runner, that does the dirty stuff. Like `yo`, i
 Tasks are defined and customized in a `Gruntfile.js` file, which lives in the root directory of your project. Check it out to see what Yeoman set up for you.
 
 ### Bower
-Nobody likes going to GitHub or random developers' sites to download a .zip of a JavaScript tool. Like when fetching a Node package with `npm install ___`, Bower lets you say `bower install ___`. The component is then saved in a directory of your choosing, generally, `app/bower_components/` for Yeoman-generated apps. Assuming you wanted jQuery, you would `bower install query`, then include the relevant file inside of your HTML file, `<script src="bower_components/jquery/jquery.js"></script>`
+Nobody likes going to GitHub or random developers' sites to download a .zip of a JavaScript tool. Like when fetching a Node package with `npm install ___`, Bower lets you say `bower install ___`. The component is then saved in a directory of your choosing, generally, `app/bower_components/` for Yeoman-generated apps. Assuming you wanted jQuery, you would run the `bower install query` command, then include the relevant file inside of your HTML file. In our case, `<script src="bower_components/jquery/jquery.js"></script>`
 
 
 ## A Typical Application
@@ -171,7 +171,7 @@ Back on track. What you're looking at is the most common application structure a
 
 `Gruntfile.js` has all of the build, server, and test tasks defined.
 
-At this point, `yo` has done his job. He's given you everything you need to launch a production-ready web application. Let's now shift our focus to what Grunt tasks he's pre-configured us with.
+At this point, `yo` has done his job. He's given you everything you need to launch a production-ready web application. Let's now shift our focus to what Grunt tasks he's pre-configured for us.
 
 ### `grunt build`
 
@@ -287,7 +287,7 @@ As we talked about earlier, this starts the server, sets up watches on our files
 
 We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
 
-[Showdown](https://github.com/coreyti/showdown) lets us feed it a string of Markdown and get HTML back. We should be able to make good use of this in our application. Open up another terminal window, `cd` back into the app's directory, then run:
+[Showdown](https://github.com/coreyti/showdown) takes a string of Markdown and gives us HTML back. We should be able to make good use of this in our application. Open up another terminal window, `cd` back into the app's directory, then run:
 
 ```
 $ bower install showdown --save
@@ -298,7 +298,9 @@ bower checking out showdown#v0.3.1
 bower installing showdown#0.3.1
 ```
 
-Bower also lets you search for what you need. Let's see if an Underscore helper library is available.
+The `--save` flag on our will add the package to our new application's `bower.json` file, so next time we run `bower install`, Bower will remember we need those and install them for us automatically!
+
+Bower also lets you search for what you need. Lets see if an Underscore helper library is available.
 
 ```
 $ bower search underscore.string
