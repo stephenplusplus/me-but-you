@@ -257,10 +257,10 @@ I of course meant appetizers. Grab some cheese sticks, then meet me in a little 
 
 ## Let's Create an Application
 
-To get a feel for some other Yeoman generators, let's try out Backbone. We'll just create a simple blog using Backbone routes and views, with posts written in Markdown.
+To get a feel for some other Yeoman generators, let's try out Backbone. We'll create a simple To-Do app, use Bower for our dependencies, and even write a test.
 
 ```
-$ Sound good?: (Y/n)
+$ Sound good? (Y/n)
 ```
 
 I'll assume you entered "Y". We ride! But first:
@@ -269,13 +269,27 @@ I'll assume you entered "Y". We ride! But first:
 # install the Backbone generator:
 $ npm install -g generator-backbone
 
-# make another play directory, then run:
+# make another play directory, then do these things:
 $ yo backbone
+
+     _-----_
+    |       |
+    |--(o)--|   .--------------------------.
+   `---------´  |    Welcome to Yeoman,    |
+    ( _´U`_ )   |   ladies and gentlemen!  |
+    /___A___\   '__________________________'
+     |  ~  |
+   __'.___.'__
+ ´   `  |° ´ Y `
+
+Out of the box I include HTML5 Boilerplate, jQuery, Backbone.js and Modernizr.
+
+Would you like to include Twitter Bootstrap for Sass? (Y/n) Y
+
+Would you like to include RequireJS (for AMD support)? (Y/n) n
 ```
 
-Again, pop in some `No`s to any questions you are asked so we're on the same page.
-
-Open your new app in your editor. Things should feel quite familiar after our experience with the web app generator. You still have an `app` directory, with `scripts/`, `styles/` and an `index.html`.
+Open the new app in your editor. Things should feel quite familiar after our experience with the web app generator. You still have an `app` directory, with `scripts/`, `styles/` and an `index.html`.
 
 Before we start editing files, run:
 
@@ -283,75 +297,518 @@ Before we start editing files, run:
 $ grunt server
 ```
 
-As we talked about earlier, this starts the server, sets up watches on our files, blah blah yipsie-doodle.
+As we talked about earlier, this starts the server, sets up watches on our files, blah blah yipsie-doodle. Your browser should open, and you should be greeted with an accent:
 
-We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
+### 'Allo, 'Allo!
 
-[Showdown](https://github.com/coreyti/showdown) takes a string of Markdown and gives us HTML back. We should be able to make good use of this in our application. Open up another terminal window, `cd` back into the app's directory, then run:
+Well, shoot, we have to keep that. It's just so nice. However, let's clear out the other stuff.
 
-```
-$ bower install showdown --save
-bower cloning git://github.com/coreyti/showdown.git
-bower cached git://github.com/coreyti/showdown.git
-bower fetching showdown
-bower checking out showdown#v0.3.1
-bower installing showdown#0.3.1
-```
-
-The `--save` flag on our will add the package to our new application's `bower.json` file, so next time we run `bower install`, Bower will remember we need those and install them for us automatically!
-
-Bower also lets you search for what you need. Lets see if an Underscore helper library is available.
-
-```
-$ bower search underscore.string
-Search results:
-
-    underscore.string git://github.com/epeli/underscore.string.git
-```
-
-Woot! Now, just install it:
-
-```
-$ bower install underscore.string --save
-```
-
-Now that Bower has awesomed all over our application, go into `app/index.html` and update the `scripts/vendor` comment block:
-
+`index.html`
 ```html
-<!-- build:js scripts/vendor.js -->
-<script src="bower_components/jquery/jquery.js"></script>
-<script src="bower_components/underscore/underscore.js"></script>
-<script src="bower_components/underscore.string/lib/underscore.string.js"></script>
-<script src="bower_components/backbone/backbone.js"></script>
-<script src="bower_components/showdown/compressed/showdown.js"></script>
-<!-- endbuild -->
+<div class="container">
+    <div class="hero-unit">
+        <h1>'Allo, 'Allo!</h1>
+        <section id="todo-app">
+            <!-- Where our To Do app will go -->
+        </section>
+    </div>
+</div>
 ```
 
-When you save the file, your browser will refresh and you'll have the new libraries included and ready to play with.
+When you save, your browser will refresh, and there we have it! Just a simple, warm "'Allo, 'Allo".
 
-Let's set ourselves up with a structure that makes sense for our application:
+Let's get ourselves a game plan. We know we're going to create a To Do app, but what might that look like? Will we need any other libraries to help us?
+
+Hmm.
+
+It's been at least 4 seconds, and I haven't heard any answers.
+
+Alright, I'm gonna grab another Dew after that file tree drank my last one. I'll let you know if I think of anything.
+
+
+## To Do: Set Up Our File Structure
+
+B3. A terrible slot in a vending machine for a carbonated drink. Fizz, foam, disaster.
+
+While I was in the bathroom washing my hands, I had a vision.
 
 ```
-$ yo backbone:view post
-   create app/scripts/templates/post.ejs
-   create app/scripts/views/post-view.js
+[ Add a New To Do ] ← input
 
-$ yo backbone:view index
-    create app/scripts/templates/index.ejs
-    create app/scripts/views/index-view.js
-
-$ yo backbone:router post
-   create app/scripts/routes/post-router.js
+checkbox
+- clicking with draw a line through the title of the todo item
+ ↓
+[x] To Do Item #1
+[ ] To Do Item #2
+    ↑ title
+      - double clicking will trigger an "edit" mode
 ```
+
+Let's set ourselves up with a structure that will bring this vision to life. `generator-backbone`, came with some secret weapons: sub-generators. `yo backbone` scaffolded our application, but flip back to your terminal and check out what these guys can do:
+
+```
+# create a collection for our To Do items.
+$ yo backbone:collection todos
+    create app/scripts/collections/todos-collection.js
+
+# create a model for a To Do item.
+$ yo backbone:model todo
+    create app/scripts/models/todo-model.js
+
+# create a view for our list of To Do items.
+$ yo backbone:view todos
+   create app/scripts/templates/todos.ejs
+   create app/scripts/views/todos-view.js
+
+# create a view for just one To Do item.
+$ yo backbone:view todo
+   create app/scripts/templates/todo.ejs
+   create app/scripts/views/todo-view.js
+```
+
+Check out your index.html:
 
 ```html
 <!-- build:js scripts/main.js -->
 <script src="scripts/main.js"></script>
 <script src="scripts/templates.js"></script>
-<script src="scripts/views/post-view.js"></script>
-<script src="scripts/views/index-view.js"></script>
-<script src="scripts/routes/post-router.js"></script>
+<script src="scripts/collections/todos-collection.js"></script>
+<script src="scripts/models/todo-model.js"></script>
+<script src="scripts/views/todos-view.js"></script>
+<script src="scripts/views/todo-view.js"></script>
 <!-- endbuild -->
 ```
 
-Oh, well, would you look at that!
+How 'bout that! It not only created and placed files in relevant directories, it even included them in your HTML for you.
+
+I've created a repository for what our To Do application will look like. [Click here](https://github.com/stephenplusplus/tutorial-backbone-app) to see the code. We'll walk through the files together to some degree, but please refer to the repository to get the full code.
+
+### `scripts/main.js`
+```js
+/*global backboneApp, $*/
+'use strict';
+
+window.backboneApp = {
+    Models: {},
+    Collections: {},
+    Views: {},
+    Routers: {},
+    init: function () {
+        new this.Views.TodosView({
+            collection: new this.Collections.TodosCollection()
+        });
+    }
+};
+
+$(document).ready(function () {
+    backboneApp.init();
+});
+```
+#### Thoughts
+The Backbone generator is establishing some good practices you can use right out of the box. It took the name of your directory, in my case "backboneApp", and exposed an object literal to hold the Models, Collections, and other objects we'll create.
+
+The generator also incorporates [JSHint](http://www.jshint.com) into your app's build process, making sure your code is of the highest quality. You are encouraged to customize your preferences inside the `.jshintrc` file in the root of your project's directory.
+
+You'll also see `'use strict';` at the top, which kicks your app into [Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode).
+
+Finally, the `$(document).ready` will call `backboneApp.init`, which creates a `TodosCollection`, then passes it into a `TodosView`. I'll go over these in more detail soon.
+
+
+### `scripts/collections/todos-collection.js`
+```js
+/*global backboneApp, Backbone*/
+
+backboneApp.Collections.TodosCollection = Backbone.Collection.extend({
+
+    localStorage: new Backbone.LocalStorage('backbone-generator-todos'),
+
+    initialize: function () {
+        this.model = backboneApp.Models.TodoModel;
+    }
+
+});
+```
+#### Thoughts
+If we want our To Do app to be somewhat usable, we have to store our To Do items somewhere. There's a handy Backbone adapter you may be familiar with, called Backbone.LocalStorage. It will intercept Backbone's calls to the default remote backend, and use your browser's `window.localStorage` instead.
+
+We know we'll need the Backbone.LocalStorage adapter, but we don't know where we'll get it. Idea! Idea! Bower.
+
+We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, Twitter Bootstrap, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
+
+Go back to your favorite terminal and try this:
+
+```
+$ bower search backbone
+```
+
+Ok, wow. That's... a lot. Maybe we should narrow that down.
+
+```
+$ bower search backbone.localstorage
+Search results:
+
+    backbone.localStorage git://github.com/jeromegn/Backbone.localStorage.git
+```
+
+There we go. Now we just have to install it.
+
+```
+$ bower install backbone.localStorage --save
+bower cloning git://github.com/jeromegn/Backbone.localStorage.git
+bower cached git://github.com/jeromegn/Backbone.localStorage.git
+bower fetching backbone.localStorage
+bower checking out backbone.localStorage#v1.1.4
+bower installing backbone.localStorage#v1.1.4
+```
+
+When working with multiple developers, it can be troublesome assuring everyone has the correct dependencies and matching versions. By using `--save` above, we are telling Bower to remember this new dependency, then write about it in our `bower.json` file. When another developer clones your project, they just have to run `bower install` to download every dependency, thus keeping everyone in sync. That's why `app/bower_components` is listed in your `.gitignore` file. Gone are the days of bloated repositories!
+
+Now that Bower has awesomed all over our application, go into `app/index.html` and update the `scripts/vendor.js` comment block:
+
+```html
+<!-- build:js scripts/vendor.js -->
+<script src="bower_components/jquery/jquery.js"></script>
+<script src="bower_components/underscore/underscore.js"></script>
+<script src="bower_components/backbone/backbone.js"></script>
+<script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+<!-- endbuild -->
+```
+
+When you save the file, your browser will refresh and you'll have the new library ready to use. More importantly, our `TodosCollection` will have it ready to use.
+
+
+### `scripts/collections/todo-model.js`
+```js
+/*global backboneApp, Backbone*/
+
+backboneApp.Models.TodoModel = Backbone.Model.extend({
+
+    defaults: {
+        title: '',
+        completed: false
+    },
+
+    toggle: function () {
+        this.save({
+            completed: !this.get('completed')
+        });
+    }
+
+});
+```
+#### Thoughts
+This is a pretty basic Backbone Model. We set some default properties for our To Do items, and define a `toggle` function, simply used to switch between a "Completed" or "Incomplete" state.
+
+
+### `scripts/views/todos-view.js`
+```js
+/*global backboneApp, Backbone, JST*/
+
+backboneApp.Views.TodosView = Backbone.View.extend({
+
+    el: '#todo-app',
+
+    template: JST['app/scripts/templates/todos.ejs'],
+
+    events: { /* ... */ },
+
+    initialize: function () { /* ... */ },
+
+    render: function () { /* ... */ },
+
+    createTodo: function () { /* ... */ },
+
+    addTodoItem: function () { /* ... */ },
+
+    addAllTodoItems: function () { /* ... */ }
+
+});
+```
+#### Thoughts
+This is our must robust Backbone View, so to see the definitions to these various properties and methods, please refer to the [repository](https://github.com/stephenplusplus/tutorial-backbone-app).
+
+However, here are a couple key things:
+
+```js
+el: '#todo-app'
+```
+
+This selector matches that `<section id="todo-app"></section>` element we created in our `index.html` file. This will be our primary View.
+
+```js
+template: JST['app/scripts/templates/todos.ejs']
+```
+
+This little JST thing snuck in when we said `yo backbone:view ____`. When our View's JavaScript file was created, it also created a template file for us: `app/scripts/templates/todos.ejs`.
+
+This let's us define our View's HTML in a separate file, which is collected into a JavaScript object, `JST`, then used as our template.
+
+
+### `scripts/templates/todos.ejs`
+```html
+<form class="input-append">
+    <input type="text" id="new-todo" placeholder="What do you need to do today?">
+    <input type="submit" class="btn">Submit</button>
+</form>
+<ul>
+    <!-- Where our To Do items will go -->
+</ul>
+```
+#### Thoughts
+Because we answered "Yes" to including Twitter Bootstrap for Sass when we scaffolded our application, I've added a couple of class names to pretty up our app. Feel free to style to your heart's content in the `styles/main.scss` file.
+
+
+### `styles/main.scss`
+```css
+@import 'sass-bootstrap/lib/bootstrap';
+
+.hero-unit {
+    margin: 50px auto 0 auto;
+    width: 300px;
+}
+
+form {
+    margin-top: 10px;
+}
+
+ul,
+li form {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+li form {
+    display: none;
+}
+
+.editing {
+    span {
+        display: none;
+    }
+
+    form {
+        display: inline-block;
+    }
+}
+
+input:checked ~ span {
+    text-decoration: line-through;
+}
+```
+#### Thoughts
+Sass is pretty cool.
+
+Also, it's pretty cool that the browser still reloads when you make a change to your Sass files. If you've used Sass before, you know it can be somewhat of a hassle to get a productive development environment set up. Out of the box, you're editing, watching, and reloading with none of the aforementioned hassle. Smiley face.
+
+
+### `scripts/views/todo-view.js`
+```js
+/*global backboneApp, Backbone, JST*/
+
+backboneApp.Views.TodoView = Backbone.View.extend({
+
+    tagName: 'li',
+
+    template: JST['app/scripts/templates/todo.ejs'],
+
+    events: {
+        'click input[type="checkbox"]': 'toggle',
+        'dblclick span': 'toggleEdit',
+        'submit form': 'toggleEdit'
+    },
+
+    initialize: function () { /* ... */ },
+
+    render: function () { /* ... */ },
+
+    toggle: function () { /* ... */ },
+
+    toggleEdit: function () { /* ... */ }
+
+});
+```
+#### Thoughts
+This `TodoView` will represent an individual item. It will be an `<li>` with some custom functionality, handling click, double click, and submit events, enabling a user to edit and save a To Do.
+
+
+### `scripts/templates/todo.ejs`
+```html
+<input type="checkbox" <% if (completed) { %>checked<% } %>>
+<form>
+    <input type="text" value="<%= title %>">
+</form>
+<span>
+    <%= title %>
+</span>
+```
+#### Thoughts
+Simple enough. We're using some basic Underscore templating to spit out values and toggle a `checked` state on our checkbox.
+
+
+## To Do: To Do It Again
+
+Our To Do application is actually done! It's quite basic in functionality, but you can feel how natural it is to develop an application using Yeoman and his Generator buddies. And even though the functionality is basic, none of the techniques we used to get here were "basic." We're using smart, efficient libraries (Sass, Backbone, Underscore) with a finely-tuned development process (Grunt, LiveReload, Compass), and it took us only a few terminal commands.
+
+If you're like me, you probably want to stop with the To Do stuff, and start making your own applications. You should now be familiar with the development workflow, so you're free to go explore. You'll learn even more when starting from scratch, having your own app in mind.
+
+If you want to go play around, go ahead! When you're done generating like a crazy person, come back and let's ship it.
+
+
+## To Do: Ship It
+
+Let's put this thing in the water and see if she floats! DO NOT put your computer in the water. Wait, would a MacBook Air float? No, probably not. Right?
+
+That was a dangerous paragraph. Let's just get our app ready for production, safe and dry.
+
+`grunt server` has been amazing, but it's time to meet his brother, `grunt build`. We talked about him a bit earlier, but let's go over a few more details.
+
+Here is what the `grunt build` task is defined as in your `Gruntfile.js`:
+
+```js
+grunt.registerTask('build', [
+    'clean:dist',    // Clears out your .tmp/ and dist/ folders
+    'coffee',        // Compiles your CoffeeScript files (if any)
+    'createDefaultTemplate', // Creates a JS file that sets up your JST object
+    'jst',           // Compiles your `scripts/templates/` files
+    'compass:dist',  // Compiles your Sassiness
+    'useminPrepare', // Looks for those <!-- special blocks --> in your HTML
+    'imagemin',      // Optimizes your images!
+    'htmlmin',       // Minifies your HTML files
+    'concat',        // Task used to concatenate your JS and CSS
+    'cssmin',        // Minifies your CSS files
+    'uglify',        // Task used to minify your JS
+    'copy',          // Copies files from .tmp/ and app/ into dist/
+    'rev',           // Creates unique hashes and re-names your new JS/CSS files
+    'usemin'         // Updates the references in your HTML with the new files
+]);
+```
+
+So, that thing is pretty legit. All of these tasks are defined inside of `Gruntfile.js`, so feel free to poke and tweak around to tailor the experience to your needs. It's highly likely you won't need to do any customization at all, but it's there if you need to!
+
+One other thing. `grunt build` is actually wrapped inside of another task.
+
+
+### `grunt`
+
+Simply running `grunt` will execute the `default` task:
+
+```js
+grunt.registerTask('default', [
+    'jshint',
+    'test',
+    'build'
+]);
+```
+
+Those first two tasks, `jshint` and `test` are easy to overlook when rushing an app out the door, but are very important.
+
+### JSHint
+The `jshint` task will check with your `.jshintrc` file to learn your preferences, then run it against all of your JS files. To get the full run down of your options with JSHint, check [the docs](http://www.jshint.com/docs/#options).
+
+### Test
+The `test` task looks like this:
+
+```js
+grunt.registerTask('test', [
+    'clean:server',
+    'coffee',
+    'createDefaultTemplate',
+    'jst',
+    'compass',
+    'connect:test',
+    'mocha'
+]);
+```
+
+It basically does enough to create and serve your application for your test framework, Mocha, to execute your tests.
+
+Oh crap, tests.
+
+Next door to your `app/` and `dist/` directories, this little `test/` buckaroo has been waiting for our attention. Aww.
+
+IF you open that up, you'll see `test/` has its own `bower.json` and `index.html`, as well as a `spec/` directory. Your tests will have some dependencies of their own, the [Chai Assertion Library](http://chaijs.com) and [Mocha testing framework](http://visionmedia.github.io/mocha).
+
+Expand that `spec/` directory and you'll see a `test.js` file that looks something like this:
+
+```js
+/*global describe, it */
+'use strict';
+
+(function () {
+    describe('Give it some context', function () {
+        describe('maybe a bit more context here', function () {
+            it('should run here few assertions', function () {
+
+            });
+        });
+    });
+})();
+```
+
+Ok, looks like we could use [a pull request](https://github.com/yeoman/generator-backbone/pulls) to correct some grammar. Anybody?
+
+If you haven't written your own tests before, you'll see terms like `describe`, `it`, `before`, `beforeEach`, `after`, and `afterEach` pop up. `describe` is a wrapper for a group of related tests, and each `it` is a specific test.
+
+Try running a `grunt test` to see all the magic unfold.
+
+```
+$ grunt test
+Running "clean:server" (clean) task
+Cleaning ".tmp"...OK
+
+Running "coffee:dist" (coffee) task
+
+Running "coffee:test" (coffee) task
+
+Running "createDefaultTemplate" task
+
+Running "jst:compile" (jst) task
+File ".tmp/scripts/templates.js" created.
+
+Running "compass:dist" (compass) task
+directory .tmp/styles/
+   create .tmp/styles/main.css
+
+Running "compass:server" (compass) task
+unchanged app/styles/main.scss
+
+Running "connect:test" (connect) task
+Started connect web server on localhost:9000.
+
+Running "mocha:all" (mocha) task
+Testing: http://localhost:9000/index.html
+
+  ․
+
+  1 test complete (1 ms)
+
+>> 1 passed! (0.00s)
+
+Done, without errors.
+```
+
+You should play around and see if you can write some tests for our To Do application. A couple ideas for test cases:
+
+- Does creating a new To Do item get stored in localStorage?
+- Does a new To Do item's title get trimmed?
+- When editing a To Do item, does changing it to "blank" then saving remove the To Do item from localStorage?
+
+
+### Press Enter
+
+```
+$ grunt
+```
+
+You should see our favorite words: `Done, without errors.`
+
+
+## Yo' Next Application
+
+Yeoman is still brand new, with pull requests and new ideas coming in every day. I truly believe it's something every developer should at least try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why.
+
+If you need a buddy to help you with your project and Paul Irish is busy doing... [this](http://www.youtube.com/watch?v=0DQwOSbFB5Y), come find me. I'm always in the [#yeoman freenode room](http://webchat.freenode.net/?channels=yeoman), or just ping me on Twitter. I'm [@stephenplusplus](http://twitter.com/stephenplusplus), or Stephen Sawchuk. Nice to meet you.
