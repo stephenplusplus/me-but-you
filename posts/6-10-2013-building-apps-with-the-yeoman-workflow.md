@@ -179,7 +179,7 @@ Running `grunt build` takes your `app/` source code files and turns them into a 
 
 That `dist/` folder is what you feed to your server. `dist/` will have it's own `index.html`, with references to minified and concatenated `dist/scripts` and `dist/styles`, and optimized `dist/images`. Your users will appreciate this. Your phone-card, dial-up users will __really__ appreciate this.
 
-Behind the scenes, `grunt build` is a task that runs several sub-tasks. One of those is [`grunt-contrib-usemin`](https://github.com/tinganho/grunt-contrib-usemin), which looks for blocks inside of your `app/index.html`, like this:
+Behind the scenes, `grunt build` is a task that runs several sub-tasks. One of those is [`grunt-usemin`](https://github.com/yeoman/grunt-usemin), which looks for blocks inside of your `app/index.html`, like this:
 
 `app/index.html`
 ```
@@ -541,7 +541,7 @@ template: JST['app/scripts/templates/todos.ejs']
 
 This little JST thing snuck in when we said `yo backbone:view ____`. When our View's JavaScript file was created, it also created a template file for us: `app/scripts/templates/todos.ejs`.
 
-This let's us define our View's HTML in a separate file, which is collected into a JavaScript object, `JST`, then used as our template.
+This lets us define our View's HTML in a separate file, which is collected into a JavaScript object, `JST`, then used as our template.
 
 
 ### `scripts/templates/todos.ejs`
