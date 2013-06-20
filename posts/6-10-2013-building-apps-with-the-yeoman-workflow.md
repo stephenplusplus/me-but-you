@@ -72,8 +72,6 @@ Real quick though, find your nearest terminal and make sure you have these thing
 
 `$ npm install -g yo grunt-cli bower`
 
-Since Yeoman is all about creating production-ready applications, he encourages testing with the help of [mocha](http://visionmedia.github.io/mocha/).
-
 Create a folder we can play around in, then run:
 
 ```js
@@ -257,7 +255,7 @@ I of course meant appetizers. Grab some cheese sticks, then meet me in a little 
 
 ## Let's Create an Application
 
-To get a feel for some other Yeoman generators, let's try out Backbone. We'll create a simple To-Do app, use Bower for our dependencies, and even write a test.
+To get a feel for some other Yeoman generators, let's try out Backbone. We'll create a simple To-Do app, use Bower for our dependencies, and introduce you to a real-life workflow with Yeoman.
 
 ```
 $ Sound good? (Y/n)
@@ -385,7 +383,7 @@ Check out your index.html:
 
 How 'bout that! It not only created and placed files in relevant directories, it even included them in your HTML for you.
 
-I've created a repository for what our To Do application will look like. [Click here](https://github.com/stephenplusplus/yo-backbone-todo-app) to see the code. We'll take a glance at the files together, but please refer to the repository to get the full code.
+I've created a repository for our To Do application-- [go check it out](https://github.com/stephenplusplus/yo-backbone-todo-app). We'll take a glance at the files together, but please refer to the repository to get the full code.
 
 ### `scripts/main.js`
 ```js
@@ -408,7 +406,7 @@ $(document).ready(function () {
 });
 ```
 #### Thoughts
-The Backbone generator is establishing some good practices you can use right out of the box. It took the name of your directory, in my case "backboneApp", and exposed an object literal to hold the Models, Collections, and other objects we'll create.
+The Backbone generator is establishing some good practices you can use right out of the box. It took the name of your directory, in my case "backboneApp", and exposed an object literal to hold the Models, Collections, and other Backbone objects we may create.
 
 The generator also incorporates [JSHint](http://www.jshint.com) into your app's build process, making sure your code is of the highest, most consistent quality. You are encouraged to customize your preferences inside the `.jshintrc` file in the root of your project's directory.
 
@@ -432,9 +430,9 @@ backboneApp.Collections.TodosCollection = Backbone.Collection.extend({
 #### Thoughts
 If we want our To Do app to be somewhat usable, we have to store our To Do items somewhere. There's a handy Backbone adapter you may be familiar with called Backbone.LocalStorage. It will intercept Backbone's calls to the default remote backend and use your browser's `window.localStorage` instead.
 
-We know we'll need the Backbone.LocalStorage adapter, but where should we go to get it? Idea! Idea! Bower.
+We know we'll need the Backbone.LocalStorage adapter, but where should we go to get it? Idea! Idea!
 
-We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, Twitter Bootstrap, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
+We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, Twitter Bootstrap, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript dependency?
 
 Go back to your favorite terminal and try this:
 
@@ -498,7 +496,7 @@ backboneApp.Models.TodoModel = Backbone.Model.extend({
 });
 ```
 #### Thoughts
-This is a pretty basic Backbone Model. We set some default properties for our To Do items, and define a `toggle` function, simply used to switch between a "Complete" or "Incomplete" state.
+This is a pretty basic Backbone Model. We set some default properties for our To Do items and define a `toggle` function, simply used to switch between a "Complete" or "Incomplete" state.
 
 
 ### `scripts/views/todos-view.js`
@@ -633,7 +631,7 @@ backboneApp.Views.TodoView = Backbone.View.extend({
 });
 ```
 #### Thoughts
-This `TodoView` will represent an individual item. It will be an `<li>` with some custom functionality, handling click, double click, and submit events, enabling a user to edit and save a To Do.
+This `TodoView` will represent an individual item. It will be an `<li>` with some custom functionality handling click, double click, and submit events, enabling a user to edit and save a To Do item.
 
 
 ### `scripts/templates/todo.ejs`
@@ -650,18 +648,16 @@ This `TodoView` will represent an individual item. It will be an `<li>` with som
 Simple enough. We're using some basic Underscore templating to spit out values and toggle a `checked` state on our checkbox.
 
 
-## To Do: To Do It Again
+## To Do: Do It Again
 
-Our To Do application is actually done! It's quite basic in functionality, but you can feel how natural it is to develop an application using Yeoman and his Generator buddies. And even though the functionality is basic, none of the techniques we used to get here were "basic." We're using smart, efficient libraries (Sass, Backbone, Underscore) with a finely-tuned development process (Grunt, LiveReload, Compass), and it took us only a few terminal commands.
+Our To Do application is actually done! It's quite basic in functionality, but you should have a sense of how natural it is to develop an application using Yeoman and his Generator buddies. And even though the functionality is basic, none of the techniques we used to get here were "basic." We're using smart, efficient libraries (Sass, Backbone, Underscore) with a finely-tuned development process (Grunt, LiveReload, Compass), and it took us only a few terminal commands.
 
-If you're like me, you probably want to stop with the To Do stuff, and start making your own applications. You should now be familiar with the development workflow, so you're free to go explore. You'll learn even more when starting from scratch, having your own app in mind.
-
-If you want to go play around, go ahead! When you're done generating like a crazy person, come back and let's ship it.
+If you're like me, you probably want to stop with the To Do stuff and start making your own applications. If you want to go play around, go for it! When you're done generating like a crazy person, come back and let's ship our To Do app.
 
 
 ## To Do: Ship It
 
-Let's put this thing in the water and see if she floats! DO NOT put your computer in the water. Wait, would a MacBook Air float? No, probably not. Right?
+Let's put this thing in the water and see if she floats! Do NOT put your computer in the water. Wait, would a MacBook Air float? No, probably not. Hmm...
 
 That was a dangerous paragraph. Let's just get our app ready for production, safe and dry.
 
@@ -688,9 +684,9 @@ grunt.registerTask('build', [
 ]);
 ```
 
-So, that thing is pretty legit. All of these tasks are defined inside of `Gruntfile.js`, so feel free to poke and tweak around to tailor the experience to your needs. It's highly likely you won't need to do any customization at all, but it's there if you need to!
+So, that thing is pretty legit. All of these tasks are defined inside of `Gruntfile.js`, so feel free to poke and tweak around to customize your application's build. It's highly likely you won't need to do any customization at all, but it's there if you need to.
 
-One other thing. `grunt build` is actually wrapped inside of another task.
+Oh, one other thing. `grunt build` is actually wrapped inside of another task.
 
 
 ### `grunt`
@@ -708,7 +704,7 @@ grunt.registerTask('default', [
 Those first two tasks, `jshint` and `test` are easy to overlook when rushing an app out the door, but are very important.
 
 ### JSHint
-The `jshint` task will check with your `.jshintrc` file to learn your preferences, then run it against all of your JS files. To get the full run down of your options with JSHint, check [the docs](http://www.jshint.com/docs/#options).
+The `jshint` task will consult with your `.jshintrc` file to learn your preferences, then scan through all of your JS files to make sure your rules are abided by. To get the full run down of your options with JSHint, check [the JSHint documentation](http://www.jshint.com/docs/#options).
 
 ### Test
 The `test` task looks like this:
@@ -752,7 +748,7 @@ Expand that `spec/` directory and you'll see a `test.js` file that looks somethi
 
 Ok, looks like we could use [a pull request](https://github.com/yeoman/generator-backbone/pulls) to correct some grammar. Anybody?
 
-If you haven't written your own tests before, you'll see terms like `describe`, `it`, `before`, `beforeEach`, `after`, and `afterEach` pop up. `describe` is a wrapper for a group of related tests, and each `it` is a specific test.
+If you haven't written your own tests before, you'll see terms like `describe`, `it`, `before`, `beforeEach`, `after`, and `afterEach` pop up. `describe` is a wrapper for a group of related tests, `____Each` are optional functions that will execute `before` or `after` your test(s), and each `it` is a specific test.
 
 Try running a `grunt test` to see all the magic unfold.
 
@@ -792,11 +788,13 @@ Testing: http://localhost:9000/index.html
 Done, without errors.
 ```
 
-You should play around and see if you can write some tests for our To Do application. A couple ideas for test cases:
+You should play around and see if you can write some tests for our To Do application. A few ideas for test cases might be:
 
-- Does creating a new To Do item get stored in localStorage?
-- Does a new To Do item's title get trimmed?
-- When editing a To Do item, does changing it to "blank" then saving remove the To Do item from localStorage?
+- Does creating a new To Do item get saved in localStorage?
+- Does a new To Do item's title get trimmed (removing extra whitespace)?
+- When editing a To Do item, does deleting the title, then saving remove the To Do item from localStorage?
+
+There's only one more thing to do.
 
 
 ### Press Enter
@@ -810,7 +808,7 @@ You should see our favorite words: `Done, without errors.`
 
 ## Yo' Next Application
 
-Yeoman is still brand new, with pull requests and new ideas coming in every day. I truly believe it's something every developer should at least try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why.
+Yeoman is still brand new, with pull requests and new ideas coming in every day. I truly believe it's something every developer should try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why.
 
 If you need a buddy to help you with your project and Paul Irish is busy doing... [this](http://www.youtube.com/watch?v=0DQwOSbFB5Y), come find me. I'm always in the [#yeoman freenode room](http://webchat.freenode.net/?channels=yeoman), or just ping me on Twitter. I'm [@stephenplusplus](http://twitter.com/stephenplusplus), or Stephen Sawchuk. Nice to meet you.
 
