@@ -4,7 +4,7 @@
 
 Trick question. It's not a thing. It's this guy:
 
-** image **
+<center>![](img/yeoman-big.png)</center>
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create. As an example, scaffolding a web application would look something like this:
 
@@ -344,7 +344,11 @@ checkbox
       - double clicking will trigger an "edit" mode
 ```
 
-Let's set ourselves up with a structure that will bring this vision to life. `generator-backbone`, came with some secret weapons: sub-generators. `yo backbone` scaffolded our application, but flip back to your terminal and check out what these guys can do:
+Or...
+
+<center>![](img/vision-big.png)</center>
+
+Let's set ourselves up with a structure that will bring this vision to life. `generator-backbone` came with some secret weapons: sub-generators. `yo backbone` scaffolded our application, but flip back to your terminal and check out what these guys can do:
 
 ```
 # create a collection for our To Do items.
@@ -381,12 +385,11 @@ Check out your index.html:
 
 How 'bout that! It not only created and placed files in relevant directories, it even included them in your HTML for you.
 
-I've created a repository for what our To Do application will look like. [Click here](https://github.com/stephenplusplus/tutorial-backbone-app) to see the code. We'll walk through the files together to some degree, but please refer to the repository to get the full code.
+I've created a repository for what our To Do application will look like. [Click here](https://github.com/stephenplusplus/yo-backbone-todo-app) to see the code. We'll take a glance at the files together, but please refer to the repository to get the full code.
 
 ### `scripts/main.js`
 ```js
 /*global backboneApp, $*/
-'use strict';
 
 window.backboneApp = {
     Models: {},
@@ -407,11 +410,9 @@ $(document).ready(function () {
 #### Thoughts
 The Backbone generator is establishing some good practices you can use right out of the box. It took the name of your directory, in my case "backboneApp", and exposed an object literal to hold the Models, Collections, and other objects we'll create.
 
-The generator also incorporates [JSHint](http://www.jshint.com) into your app's build process, making sure your code is of the highest quality. You are encouraged to customize your preferences inside the `.jshintrc` file in the root of your project's directory.
+The generator also incorporates [JSHint](http://www.jshint.com) into your app's build process, making sure your code is of the highest, most consistent quality. You are encouraged to customize your preferences inside the `.jshintrc` file in the root of your project's directory.
 
-You'll also see `'use strict';` at the top, which kicks your app into [Strict Mode](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode).
-
-Finally, the `$(document).ready` will call `backboneApp.init`, which creates a `TodosCollection`, then passes it into a `TodosView`. I'll go over these in more detail soon.
+Finally, `$(document).ready` will call `backboneApp.init`, which creates a `TodosCollection`, then passes it into a `TodosView`. I'll go over these in more detail soon.
 
 
 ### `scripts/collections/todos-collection.js`
@@ -429,9 +430,9 @@ backboneApp.Collections.TodosCollection = Backbone.Collection.extend({
 });
 ```
 #### Thoughts
-If we want our To Do app to be somewhat usable, we have to store our To Do items somewhere. There's a handy Backbone adapter you may be familiar with, called Backbone.LocalStorage. It will intercept Backbone's calls to the default remote backend, and use your browser's `window.localStorage` instead.
+If we want our To Do app to be somewhat usable, we have to store our To Do items somewhere. There's a handy Backbone adapter you may be familiar with called Backbone.LocalStorage. It will intercept Backbone's calls to the default remote backend and use your browser's `window.localStorage` instead.
 
-We know we'll need the Backbone.LocalStorage adapter, but we don't know where we'll get it. Idea! Idea! Bower.
+We know we'll need the Backbone.LocalStorage adapter, but where should we go to get it? Idea! Idea! Bower.
 
 We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, Twitter Bootstrap, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript library?
 
@@ -461,7 +462,7 @@ bower checking out backbone.localStorage#v1.1.4
 bower installing backbone.localStorage#v1.1.4
 ```
 
-When working with multiple developers, it can be troublesome assuring everyone has the correct dependencies and matching versions. By using `--save` above, we are telling Bower to remember this new dependency, then write about it in our `bower.json` file. When another developer clones your project, they just have to run `bower install` to download every dependency, thus keeping everyone in sync. That's why `app/bower_components` is listed in your `.gitignore` file. Gone are the days of bloated repositories!
+When working with multiple developers, it can be troublesome assuring everyone has the correct dependencies and matching versions. By using `--save` above, we are telling Bower to remember this new dependency, then write about it in our `bower.json` file. When another developer clones your project, they just have to run `bower install` to download every dependency, keeping everyone in sync. That's why `app/bower_components` is listed in your `.gitignore` file. Gone are the days of bloated repositories!
 
 Now that Bower has awesomed all over our application, go into `app/index.html` and update the `scripts/vendor.js` comment block:
 
@@ -474,7 +475,7 @@ Now that Bower has awesomed all over our application, go into `app/index.html` a
 <!-- endbuild -->
 ```
 
-When you save the file, your browser will refresh and you'll have the new library ready to use. More importantly, our `TodosCollection` will have it ready to use.
+When you save the file, your browser will refresh and you'll have the new library ready to use. More specifically, `TodosCollection` will have it ready to use.
 
 
 ### `scripts/collections/todo-model.js`
@@ -497,7 +498,7 @@ backboneApp.Models.TodoModel = Backbone.Model.extend({
 });
 ```
 #### Thoughts
-This is a pretty basic Backbone Model. We set some default properties for our To Do items, and define a `toggle` function, simply used to switch between a "Completed" or "Incomplete" state.
+This is a pretty basic Backbone Model. We set some default properties for our To Do items, and define a `toggle` function, simply used to switch between a "Complete" or "Incomplete" state.
 
 
 ### `scripts/views/todos-view.js`
@@ -525,7 +526,7 @@ backboneApp.Views.TodosView = Backbone.View.extend({
 });
 ```
 #### Thoughts
-This is our must robust Backbone View, so to see the definitions to these various properties and methods, please refer to the [repository](https://github.com/stephenplusplus/tutorial-backbone-app).
+This is our must robust Backbone View, so to see the definitions to these various properties and methods, please refer to the [repository](https://github.com/stephenplusplus/yo-backbone-todo-app).
 
 However, here are a couple key things:
 
@@ -539,9 +540,9 @@ This selector matches that `<section id="todo-app"></section>` element we create
 template: JST['app/scripts/templates/todos.ejs']
 ```
 
-This little JST thing snuck in when we said `yo backbone:view ____`. When our View's JavaScript file was created, it also created a template file for us: `app/scripts/templates/todos.ejs`.
+This little JST thing snuck in when we said `yo backbone:view ____`. When our View's JavaScript file was created, the Backbone sub-generator created a matching template file for us: `app/scripts/templates/todos.ejs`.
 
-This lets us define our View's HTML in a separate file, which is collected into a JavaScript object, `JST`, then used as our template.
+These `.ejs` template files will define our Views' HTML. When we run our app with `grunt server` or `grunt build`, our template files will be crushed together into a JavaScript object, `JST`. When our view file says `template: JST['path/to/view/template.ejs']`, this is referring to that object.
 
 
 ### `scripts/templates/todos.ejs`
@@ -602,7 +603,7 @@ input:checked ~ span {
 #### Thoughts
 Sass is pretty cool.
 
-Also, it's pretty cool that the browser still reloads when you make a change to your Sass files. If you've used Sass before, you know it can be somewhat of a hassle to get a productive development environment set up. Out of the box, you're editing, watching, and reloading with none of the aforementioned hassle. Smiley face.
+Also, it's pretty cool that the browser still reloads when you make a change to your Sass files. If you've used Sass before, you know it can be a hassle to get a productive development environment set up quickly. Out of the Yeoman box, you're editing, watching, and reloading with none of the aforementioned hassle. Smiley face.
 
 
 ### `scripts/views/todo-view.js`
@@ -812,3 +813,5 @@ You should see our favorite words: `Done, without errors.`
 Yeoman is still brand new, with pull requests and new ideas coming in every day. I truly believe it's something every developer should at least try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why.
 
 If you need a buddy to help you with your project and Paul Irish is busy doing... [this](http://www.youtube.com/watch?v=0DQwOSbFB5Y), come find me. I'm always in the [#yeoman freenode room](http://webchat.freenode.net/?channels=yeoman), or just ping me on Twitter. I'm [@stephenplusplus](http://twitter.com/stephenplusplus), or Stephen Sawchuk. Nice to meet you.
+
+<center>![](img/me.jpg)</center>
