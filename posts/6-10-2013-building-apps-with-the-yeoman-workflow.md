@@ -4,27 +4,11 @@
 
 Trick question. It's not a thing. It's this guy:
 
-<center>![](img/yeoman-big.png)</center>
+<center>![](img/the-yo-man.png)</center>
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create. As an example, scaffolding a web application would look something like this:
 
-```
-$ yo webapp
-
-     _-----_
-    |       |
-    |--(o)--|   .--------------------------.
-   `---------´  |    Welcome to Yeoman,    |
-    ( _´U`_ )   |   ladies and gentlemen!  |
-    /___A___\   '__________________________'
-     |  ~  |
-   __'.___.'__
- ´   `  |° ´ Y `
-
-Out of the box I include HTML5 Boilerplate, jQuery and Modernizr.
-[?] Would you like to include Twitter Bootstrap for Sass?: (Y/n)
-[?] Would you like to include RequireJS (for AMD support)?: (Y/n)
-```
+<center>![](img/yo-webapp.png)</center>
 
 The first thing that comes to mind is OMG so dreamy. Second, thanks, bro.
 
@@ -68,17 +52,15 @@ Nobody likes going to GitHub or random developers' sites to download a .zip of a
 
 Let's get wild. It's time to create an app.
 
-Real quick though, find your nearest terminal and make sure you have these things installed:
+Real quick though, find your nearest terminal and make sure you have `yo` installed globally:
 
-`$ npm install -g yo grunt-cli bower`
+`$ npm install -g yo`
 
 Create a folder we can play around in, then run:
 
 ```js
 $ yo webapp
 ```
-
-*So we're both looking at the same thing, answer `No` to any prompts that come up.
 
 Here's what should have happened:
 
@@ -88,41 +70,21 @@ Did it? Good!
 
 To prevent you from scrolling up through all of the text that was just spit out at you, here's an overview:
 
-- The application was scaffolded:
-```
-create Gruntfile.js
-create package.json
-create .gitignore
-create .gitattributes
-create .bowerrc
-create bower.json
-create .jshintrc
-create .editorconfig
-create app/favicon.ico
-create app/404.html
-create app/robots.txt
-create app/.htaccess
-create app/styles/main.css
-create app/index.html
-create app/scripts/main.js
-create app/scripts/hello.coffee
-invoke   mocha:app
-create     test/bower.json
-create     test/.bowerrc
-create     test/spec/test.js
-create     test/index.html
-```
-- Your Bower components and NPM packages were installed:
-```
-I'm all done. Running bower install & npm install for you to install the required dependencies. If this fails, try running the command yourself.
-```
+<center>![](img/yo-webapp-long.png)</center>
 
-Open the new stuff in your favorite editor, and we'll look over what we have.
+The new web application was scaffolded and your Bower components and NPM packages were automatically installed.
+
+Open all this new stuff in your favorite editor, and we'll look over what we have.
 
 ```
 ├─ app/
 │  ├─ images/
+│  │  ├─ glyphicons-halflings.png
+│  │  └─ glyphicons-halflings-white.png
 │  ├─ scripts/
+│  │  ├─ vendor/
+│  │  │  └─ bootstrap.js
+│  │  ├─ app.js
 │  │  ├─ hello.coffee
 │  │  └─ main.js
 │  ├─ styles/
@@ -194,7 +156,7 @@ After your `grunt build` task completes, you will end up with this:
 <script src="scripts/c155266f.main.js"></script>
 ```
 
-It sucked those scripts up, concatenated, minified, and versioned them. Quite powerful.
+It sucked those scripts up, concatenated, minified, and even prefixed them with unique hashes to prevent browsers from caching outdated versions. Quite powerful.
 
 That's one of the shining features about using Yeoman. Instead of manually defining what you want your build process to do each time you create an application, you can just place some trust in Yo and your chosen generator. Together, they'll wire you up with everything you need to launch a production-ready application.
 
@@ -204,32 +166,7 @@ Now that you've seen what type of work `grunt build` will do when your applicati
 
 Try it out:
 
-```
-$ grunt server
-Running "server" task
-
-Running "clean:server" (clean) task
-Cleaning ".tmp"...OK
-
-Running "concurrent:server" (concurrent) task
-
-    Running "coffee:dist" (coffee) task
-    File .tmp/scripts/hello.js created.
-
-    Done, without errors.
-
-    Running "compass:server" (compass) task
-
-    Done, without errors.
-
-Running "connect:livereload" (connect) task
-Starting connect web server on localhost:9000.
-
-Running "open:server" (open) task
-
-Running "watch" task
-Waiting...
-```
+<center>![](img/yo-webapp-grunt-server.png)</center>
 
 The aforementioned "several other Grunt tasks" are:
 
@@ -255,7 +192,7 @@ I of course meant appetizers. Grab some cheese sticks, then meet me in a little 
 
 ## Let's Create an Application
 
-To get a feel for some other Yeoman generators, let's try out Backbone. We'll create a simple To-Do app, use Bower for our dependencies, and introduce you to a real-life workflow with Yeoman.
+To get a feel for some other Yeoman generators, let's try out Backbone. We'll create a simple To Do app, use Bower for our dependencies, and introduce you to a real-life workflow with Yeoman.
 
 ```
 $ Sound good? (Y/n)
@@ -282,9 +219,8 @@ $ yo backbone
 
 Out of the box I include HTML5 Boilerplate, jQuery, Backbone.js and Modernizr.
 
-Would you like to include Twitter Bootstrap for Sass? (Y/n) Y
-
-Would you like to include RequireJS (for AMD support)? (Y/n) n
+Would you like to include Twitter Bootstrap for Sass? (y/N) No
+Would you like to include RequireJS (for AMD support)? (y/N) No
 ```
 
 Open the new app in your editor. Things should feel quite familiar after our experience with the web app generator. You still have an `app` directory, with `scripts/`, `styles/` and an `index.html`.
@@ -334,7 +270,7 @@ While I was in the bathroom washing my hands, I had a vision.
 [ Add a New To Do ] ← input
 
 checkbox
-- clicking with draw a line through the title of the todo item
+- clicking will draw a line through the title of the todo item
  ↓
 [x] To Do Item #1
 [ ] To Do Item #2
@@ -346,27 +282,11 @@ Or...
 
 <center>![](img/vision-big.png)</center>
 
-Let's set ourselves up with a structure that will bring this vision to life. `generator-backbone` came with some secret weapons: sub-generators. `yo backbone` scaffolded our application, but flip back to your terminal and check out what these guys can do:
+Let's set ourselves up with a structure that will bring this vision to life.
 
-```
-# create a collection for our To Do items.
-$ yo backbone:collection todos
-    create app/scripts/collections/todos-collection.js
+`generator-backbone` came with some secret weapons: sub-generators. `yo backbone` scaffolded our application, but flip back to your terminal and check out what these guys can do:
 
-# create a model for a To Do item.
-$ yo backbone:model todo
-    create app/scripts/models/todo-model.js
-
-# create a view for our list of To Do items.
-$ yo backbone:view todos
-   create app/scripts/templates/todos.ejs
-   create app/scripts/views/todos-view.js
-
-# create a view for just one To Do item.
-$ yo backbone:view todo
-   create app/scripts/templates/todo.ejs
-   create app/scripts/views/todo-view.js
-```
+<center>![](img/todo-generate-models.png)</center>
 
 Check out your index.html:
 
@@ -439,6 +359,8 @@ Go back to your favorite terminal and try this:
 ```
 $ bower search backbone
 ```
+
+<center>![](img/bower-search-backbone.png)</center>
 
 Ok, wow. That's... a lot. Maybe we should narrow that down.
 
@@ -752,41 +674,7 @@ If you haven't written your own tests before, you'll see terms like `describe`, 
 
 Try running a `grunt test` to see all the magic unfold.
 
-```
-$ grunt test
-Running "clean:server" (clean) task
-Cleaning ".tmp"...OK
-
-Running "coffee:dist" (coffee) task
-
-Running "coffee:test" (coffee) task
-
-Running "createDefaultTemplate" task
-
-Running "jst:compile" (jst) task
-File ".tmp/scripts/templates.js" created.
-
-Running "compass:dist" (compass) task
-directory .tmp/styles/
-   create .tmp/styles/main.css
-
-Running "compass:server" (compass) task
-unchanged app/styles/main.scss
-
-Running "connect:test" (connect) task
-Started connect web server on localhost:9000.
-
-Running "mocha:all" (mocha) task
-Testing: http://localhost:9000/index.html
-
-  ․
-
-  1 test complete (1 ms)
-
->> 1 passed! (0.00s)
-
-Done, without errors.
-```
+<center>![](img/todo-grunt-test.png)</center>
 
 You should play around and see if you can write some tests for our To Do application. A few ideas for test cases might be:
 
