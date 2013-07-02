@@ -694,10 +694,33 @@ $ grunt
 You should see our favorite words: `Done, without errors.`
 
 
-## Yo' Next Application
+## Finding Yeoman
 
-Yeoman is still brand new, with pull requests and new ideas coming in every day. I truly believe it's something every developer should try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why.
+Yeoman is still quite young; he just turned one! Things are pretty great now and they're only going to get better. However, like all one year olds, Yeoman is still learning to walk without falling, and talk without drooling. You just might run into a bug or two. In times like these, think of him like your cute little nephew. He needs positive role models in his life, so help him learn!
 
-If you need a buddy to help you with your project and Paul Irish is busy doing... [this](http://www.youtube.com/watch?v=0DQwOSbFB5Y), come find me. I'm always in the [#yeoman freenode room](http://webchat.freenode.net/?channels=yeoman), or just ping me on Twitter. I'm [@stephenplusplus](http://twitter.com/stephenplusplus), or Stephen Sawchuk. Nice to meet you.
+That got real children's book-y, real fast. I'll grow it up a little: there are bugs and we need your help to squash the doody out of them (I said "a little"). Even if it's not a bug, but you're like, "I know a MUCH faster Grunt plug-in this generator could use," report it to the appropriate generator's issue tracker.
+
+If you want to learn some more about Yeoman or just get to know the team, you'll find us peppered all over the following sites.
+
+- [yeoman.io](http://yeoman.io)
+- [Getting Started Guide](http://yeoman.io/gettingstarted.html)
+- [@yeoman on Twitter](http://twitter.com/yeoman)
+- [+Yeoman on Google+](https://plus.google.com/101063139999404044459)
+
+If you're just plain stuck, try one of the following resource for a helping hand.
+
+- [StackOverflow](http://stackoverflow.com/questions/tagged/yeoman)
+- [#yeoman on IRC](http://webchat.freenode.net/?channels=yeoman)
+
+Yeoman is just one piece of the entire stack-- [NPM](http://npmjs.org), [Node](http://nodejs.org), [Grunt](http://gruntjs.com), and [Bower](http://bower.io). It can be intimidating if you're unfamiliar with these, but it is crucial not to fear the curve! Learning will need to happen, and like always, it will probably need to happen the hard way before it really sticks.
+
+Psst, if you're using `sudo` before every command, run, don't walk, to [Node and NPM in 30 Seconds](https://gist.github.com/isaacs/579814). There, you'll find several scripts you can run to give control back to your user account. It will also help you install Node and NPM if you're starting from scratch.
+
+
+## Yo' Next Application - Will You Yo?
+
+Like all tools, I believe Yeoman is something every developer should try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why. If you need a buddy to help you with your project, come find me. I'm always available around the links above, or just ping me on Twitter. I'm [@stephenplusplus](http://twitter.com/stephenplusplus) or Stephen Sawchuk.
 
 <center>![](img/me.jpg)</center>
+
+Nice to meet you.
