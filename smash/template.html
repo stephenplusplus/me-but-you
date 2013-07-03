@@ -1,0 +1,781 @@
+<!doctype html>
+
+<!--
+320 and Up by Andy Clarke
+Version: 3.0
+URL: http://stuffandnonsense.co.uk/projects/320andup/
+Apache License: v2.0. http://www.apache.org/licenses/LICENSE-2.0
+-->
+
+<!-- HTML5 Boilerplate -->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+
+<head>
+<meta charset="utf-8">
+
+<title>The Mobile Smashing Book Template</title>
+<link rel="stylesheet" href="css/320andup-smb.css">
+<link rel="shortcut icon" href="/favicon.ico">
+<meta http-equiv="cleartype" content="on">
+</head>
+
+<body>
+
+<header role="banner" class="clearfix">
+<h1>Building Apps With The Yeoman Workflow</h1>
+</header>
+
+<div class="content clearfix">
+
+<h2>What is Yeoman?</h2>
+
+<p>Trick question. It's not a thing. It's this guy:</p>
+
+<p><img src="img/yo.png" /></p>
+
+<p>Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create. As an example, scaffolding a web application would look something like this:</p>
+
+<p><img src="img/yo-webapp.png" /></p>
+
+<p>The first thing that comes to mind is OMG so dreamy. Second, thanks, bro.</p>
+
+<p>All we did was tell him what we wanted and he replied with specific questions to give us even more control.</p>
+
+<p>Let's go back a step, though. Not every new computer comes with a Yeoman pre-installed. He lives in the NPM package repository. You only have to ask for him once, then he packs up and moves into your hard drive. <em>Make sure you clean up, he likes new and shiny things.</em></p>
+
+<p>He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.</p>
+
+<p>Let's take a second to break apart what that <code>yo webapp</code> command really did.</p>
+
+<h3>yo</h3>
+
+<p>This is an OS X, Linux, and Windows friendly system-wide command that scours your hard drive for any installed "generators," then gives them control based on the next argument:</p>
+
+<h3>webapp</h3>
+
+<p>This is actually a separate plug-in, or "generator," called <code>generator-webapp</code>. Yeoman recognizes other <code>generator-____</code> Node modules, which opens the door for using Backbone, AngularJS, and countless other you-name-it generators.</p>
+
+<p>Something important to take away from this is it's the <code>generator-webapp</code> module that prompts us with questions. The same goes for any other generators we install. They are maintained by the community, not necessarily the Yeoman team members themselves.</p>
+
+<p>By using Yeoman, you're not saying "I want to do things your way, master. *bow* *bow*," without having any control. It's actually quite the opposite. What you're really saying is, "I want to make an application that follows best practices that have been discovered by frequent users and contributors of the web development community."</p>
+
+<p>Seriously, you have to say it just like that, or it won't work.</p>
+
+<p>Should you prefer to do something differently than what he gives you, you simply change the code that was generated for you, or even go to the source of the "generator" itself, and send in your contribution.</p>
+
+<h2>Friendship</h2>
+
+<p>Our buddy, yo has some buddies of his own, and thinks you'll all get along over endless tea and smiles. If you haven't heard of [Grunt](http://gruntjs.com) or [Bower](http://bower.io), here's a quick summary of what these give us:</p>
+
+<h3>Grunt</h3>
+
+<p>Grunt is a JavaScript-based task runner, that does the dirty stuff. Like <code>yo</code>, it also provides a base set of functionality, then allows the community to share their own plug-ins, or "tasks" that help accomplish common things. When you scaffold your application with <code>yo webapp</code>, Grunt and some hand-picked tasks will come along, which accomplish things like running your website in a local development environment, concatenating and minifying your code, optimizing your images, and much more. Tasks are run through the command line, by typing <code>grunt server</code>, <code>grunt build</code>, <code>grunt test</code>, and many more.</p>
+
+<p>Tasks are defined and customized in a <code>Gruntfile.js</code> file, which lives in the root directory of your project. Check it out to see what Yeoman set up for you.</p>
+
+<h3>Bower</h3>
+
+<p>Nobody likes going to GitHub or random developers' sites to download a .zip of a JavaScript tool. Like when fetching a Node package with <code>npm install ___</code>, Bower lets you say <code>bower install ___</code>. The component is then saved in a directory of your choosing, generally, <code>app/bower_components/</code> for Yeoman-generated apps. Assuming you wanted jQuery, you would run the <code>bower install query</code> command, then include the relevant file inside of your HTML file. In our case, <code>&lt;script src="bower_components/jquery/jquery.js"></script></code>.</p>
+
+<h2>A Typical Application</h2>
+
+<p>Let's get wild. It's time to create an app.</p>
+
+<p>Real quick though, find your nearest terminal and make sure you have <code>yo</code> installed globally:</p>
+
+<p><code>$ npm install -g yo</code></p>
+
+<p>Create a folder we can play around in, then run:</p>
+
+<p><code>$ yo webapp</code></pre>
+
+<p>Here's what should have happened:</p>
+
+<ul><li>A whole buncha stuff.</li></ul>
+
+<p>Did it? Good!</p>
+
+<p>To prevent you from scrolling up through all of the text that was just spit out at you, here's an overview:</p>
+
+<p><img src="img/yo-webapp-long.png" /></p>
+
+<p>The new web application was scaffolded and your Bower components and NPM packages were automatically installed.</p>
+
+<p>Open all this new stuff in your favorite editor, and we'll look over what we have.</p>
+
+<pre>
+├─ app/
+│  ├─ images/
+│  │  ├─ glyphicons-halflings.png
+│  │  └─ glyphicons-halflings-white.png
+│  ├─ scripts/
+│  │  ├─ vendor/
+│  │  │  └─ bootstrap.js
+│  │  ├─ app.js
+│  │  ├─ hello.coffee
+│  │  └─ main.js
+│  ├─ styles/
+│  │  └─ main.css
+│  ├─ .htaccess
+│  ├─ 404.html
+│  ├─ favicon.ico
+│  ├─ index.html
+│  └─ robots.txt
+│
+├─ node_modules/
+│  ├─ so/
+│  ├─ many/
+│  └─ packages/
+│
+├─ test/
+│  ├─ spec/
+│  │  └─ test.js
+│  ├─ .bowerrc
+│  ├─ bower.json
+│  └─ index.html
+│
+├─ .bowerrc
+├─ .editorconfig
+├─ .gitattributes
+├─ .gitignore
+├─ .jshintrc
+├─ bower.json
+├─ Gruntfile.js
+└─ package.json
+</pre>
+
+<p>If you take anything away from this article, let it be the beautiful file/folder text representation above. That just took a whole Mountain Dew of my time.</p>
+
+<p>Back on track. What you're looking at is the most common application structure a Yeoman generator will produce.</p>
+
+<p><code>app/</code> is where your pure, non-compiled, non-minified source code lives.</p>
+
+<p><code>app/scripts/</code> is where your JavaScript goes. You're free to create sub-directories and even use CoffeeScript if that's your cup of tea. That didn't make sense. Again. You're free to use TeaScript if that's your cup of coffee. Nope.</p>
+
+<p><code>app/styles/</code> is where your CSS goes. Again, sub-directories, LESS, Sass, whatevs.</p>
+
+<p><code>app/index.html</code> is the non-minified version of <code>index.html</code> that will eventually be squashed and delivered to the client. More on that later.</p>
+
+<p><code>Gruntfile.js</code> has all of the build, server, and test tasks defined.</p>
+
+<p>At this point, <code>yo</code> has done his job. He's given you everything you need to launch a production-ready web application. Let's now shift our focus to what Grunt tasks he's pre-configured for us.</p>
+
+<h3>grunt build</h3>
+
+<p>Running <code>grunt build</code> takes your <code>app/</code> source code files and turns them into a distributable application, which ends up in <code>dist/</code>.</p>
+
+<p>That <code>dist/</code> folder is what you feed to your server. <code>dist/</code> will have it's own <code>index.html</code>, with references to minified and concatenated <code>dist/scripts</code> and <code>dist/styles</code>, and optimized <code>dist/images</code>. Your users will appreciate this. Your phone-card, dial-up users will <strong><em>really</em></strong> appreciate this.</p>
+
+<p>Behind the scenes, <code>grunt build</code> is a task that runs several sub-tasks. One of those is <a href="https://github.com/yeoman/grunt-usemin">grunt-usemin</a>, which looks for blocks inside of your <code>app/index.html</code>, like this:</p>
+
+<h4>app/index.html</h4>
+
+<p><pre class="brush: html">
+&lt;!-- build:js scripts/main.js -->
+&lt;script src="bower_components/jquery/jquery.js"></script>
+&lt;script src="scripts/main.js"></script>
+&lt;!-- endbuild -->
+</pre></p>
+
+<p>After your <code>grunt build</code> task completes, you will end up with this:</p>
+
+<h4>dist/index.html</h4>
+<p><pre class="brush: html">
+&lt;script src="scripts/c155266f.main.js"></script>
+</pre></p>
+
+<p>It sucked those scripts up, concatenated, minified, and even prefixed them with unique hashes to prevent browsers from caching outdated versions. Quite powerful.</p>
+
+<p>That's one of the shining features about using Yeoman. Instead of manually defining what you want your build process to do each time you create an application, you can just place some trust in Yo and your chosen generator. Together, they'll wire you up with everything you need to launch a production-ready application.</p>
+
+<h3>grunt server</h3>
+
+<p>Now that you've seen what type of work <code>grunt build</code> will do when your application is complete, you should probably start working on your application! We'll create one together in just a sec, but first let's see what kind of workflow we'll have. Like <code>grunt build</code>, <code>grunt server</code> uses several other Grunt tasks to make development as easy as it can be.</p>
+
+<p>Try it out:</p>
+
+<p><img src="img/yo-webapp-grunt-server.png" /></p>
+
+<p>The aforementioned "several other Grunt tasks" are:</p></p>
+
+<p><code>clean:</code> Yeoman stores some stuff in a <code>.tmp</code> folder. That will be wiped out.</p>
+
+<p><code>coffee:</code> Compiles your CoffeeScript files from <code>app/scripts</code>.</p>
+
+<p><code>compass:</code> Compiles your Sass files from <code>app/styles</code>.</p>
+
+<p><code>connect:</code> Creates a local server, watches for changes to your source files, then triggers a reload in your browser.</p>
+
+<p><code>open:</code> Opens the server instance, typically <code>localhost:9000</code> in your browser.</p>
+
+<p>Make an edit or two in the source files to see the change reflected in the browser. Like I said above, this is about as easy as it can be. It just works.</p>
+
+
+<h2>Let's App It Up!</h2>
+
+<p>I of course meant appetizers. Grab some cheese sticks, then meet me in a little bit.</p>
+
+<p><em>Wash your hands!</em></p>
+
+
+<h2>Let's Create an Application</h2>
+
+<p>To get a feel for some other Yeoman generators, let's try out Backbone. We'll create a simple To Do app, use Bower for our dependencies, and introduce you to a real-life workflow with Yeoman.</p>
+
+<p><code>$ Sound good? (Y/n)</code></p>
+
+<p>I'll assume you entered "Y". We ride! But first:</p>
+
+<p><pre>
+# Install the Backbone generator:
+$ npm install -g generator-backbone
+
+# Make another play directory, then do this:
+$ yo backbone
+
+     _-----_
+    |       |
+    |--(o)--|   .--------------------------.
+   `---------´  |    Welcome to Yeoman,    |
+    ( _´U`_ )   |   ladies and gentlemen!  |
+    /___A___\   '__________________________'
+     |  ~  |
+   __'.___.'__
+ ´   `  |° ´ Y `
+
+Out of the box I include HTML5 Boilerplate, jQuery, Backbone.js and Modernizr.
+
+Would you like to include Twitter Bootstrap for Sass? (y/N) No
+Would you like to include RequireJS (for AMD support)? (y/N) No
+</pre></p>
+
+<p>Open the new app in your editor. Things should feel quite familiar after our experience with the web app generator. You still have an <code>app</code> directory, with <code>scripts/</code>, <code>styles/</code> and an <code>index.html</code>.</p>
+
+<p>Before we start editing files, run:</p>
+
+<p><pre>$ grunt server</pre></p>
+
+<p>As we talked about earlier, this starts the server, sets up watches on our files, blah blah yipsie-doodle. Your browser should open, and you should be greeted with an accent:</p>
+
+<h4>'Allo, 'Allo!</h4>
+
+<p>Well, shoot, we have to keep that. It's just so nice. However, let's clear out the other stuff.</p>
+
+<h4>index.html</h4>
+<p><pre class="brush: html">
+&lt;div class="hero-unit">
+&#09;&lt;h1>'Allo, 'Allo!</h1>
+&#09;&#09;&lt;section id="todo-app">
+&#09;&#09;&#09;&lt;!-- Where our To Do app will go -->
+&#09;&#09;&lt;/section>
+&#09;&lt;/div>
+&lt;/div>
+</pre></p>
+
+<p>When you save, your browser will refresh, and there we have it! Just a simple, warm "'Allo, 'Allo".</p>
+
+<p>Let's get ourselves a game plan. We know we're going to create a To Do app, but what might that look like? Will we need any other libraries to help us?</p>
+
+<p>Hmm.</p>
+
+<p>It's been at least 4 seconds, and I haven't heard any answers.</p>
+
+<p>Alright, I'm gonna grab another Dew after that file tree drank my last one. I'll let you know if I think of anything.</p>
+
+
+<h2>To Do: Set Up Our File Structure</h2>
+
+<p>B3. A terrible slot in a vending machine for a carbonated drink. Fizz, foam, disaster.</p>
+
+<p>While I was in the bathroom washing my hands, I had a vision.</p>
+
+<p><pre>
+[ Add a New To Do ] ← input
+
+checkbox
+- clicking will draw a line through the title of the todo item
+ ↓
+[x] To Do Item #1
+[ ] To Do Item #2
+    ↑ title
+      - double clicking will trigger an "edit" mode
+</pre></p>
+
+<p>Or...</p>
+
+<p><img src="img/vision-big.png" /></p>
+
+<p>Let's set ourselves up with a structure that will bring this vision to life.</p>
+
+<p><code>generator-backbone</code> came with some secret weapons: sub-generators. <code>yo backbone</code> scaffolded our application, but flip back to your terminal and check out what these guys can do:</p>
+
+<p><img src="img/todo-generate-models.png" /></p>
+
+Check out your index.html:
+
+<p><pre class="brush: html">
+&lt;!-- build:js scripts/main.js -->
+&lt;script src="scripts/main.js"></script>
+&lt;script src="scripts/templates.js"></script>
+&lt;script src="scripts/collections/todos-collection.js"></script>
+&lt;script src="scripts/models/todo-model.js"></script>
+&lt;script src="scripts/views/todos-view.js"></script>
+&lt;script src="scripts/views/todo-view.js"></script>
+&lt;!-- endbuild -->
+</pre></p>
+
+<p>How 'bout that! It not only created and placed files in relevant directories, it even included them in your HTML for you.</p>
+
+<p>I've created a repository for our To Do application&mdash; [go check it out](https://github.com/stephenplusplus/yo-backbone-todo-app). We'll take a glance at the files together, but please refer to the repository to get the full code.</p>
+
+
+<h3>scripts/main.js</h3>
+<p><pre class="brush: js">
+/*global backboneApp, $*/
+
+window.backboneApp = {
+&#09;Models: {},
+&#09;Collections: {},
+&#09;Views: {},
+&#09;Routers: {},
+&#09;init: function () {
+&#09;&#09;new this.Views.TodosView({
+&#09;&#09;&#09;collection: new this.Collections.TodosCollection()
+&#09;&#09;});
+&#09;}
+};
+
+$(document).ready(function () {
+&#09;backboneApp.init();
+});
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>The Backbone generator is establishing some good practices you can use right out of the box. It took the name of your directory, in my case "backboneApp", and exposed an object literal to hold the Models, Collections, and other Backbone objects we may create.</p>
+
+<p>The generator also incorporates <a href="http://www.jshint.com">JSHint</a> into your app's build process, making sure your code is of the highest, most consistent quality. You are encouraged to customize your preferences inside the `.jshintrc` file in the root of your project's directory.</p>
+
+<p>Finally, <code>$(document).ready</code> will call <code>backboneApp.init</code>, which creates a <code>TodosCollection</code>, then passes it into a <code>TodosView</code>. I'll go over these in more detail soon.</p>
+
+
+<h3>scripts/collections/todos-collection.js</h3>
+<p><pre class="brush: js">
+/*global backboneApp, Backbone*/
+
+backboneApp.Collections.TodosCollection = Backbone.Collection.extend({
+
+&#09;localStorage: new Backbone.LocalStorage('backbone-generator-todos'),
+
+&#09;initialize: function () {
+&#09;&#09;this.model = backboneApp.Models.TodoModel;
+&#09;}
+
+});
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>If we want our To Do app to be somewhat usable, we have to store our To Do items somewhere. There's a handy Backbone adapter you may be familiar with called Backbone.LocalStorage. It will intercept Backbone's calls to the default remote backend and use your browser's <code>window.localStorage</code> instead.</p>
+
+<p>We know we'll need the Backbone.LocalStorage adapter, but where should we go to get it? <strong>Idea! Idea!</strong></p>
+
+<p>We haven't made much use of Bower directly. When our application was scaffolded, Bower was used behind the scenes to grab Modernizr, Twitter Bootstrap, jQuery, Underscore, and Backbone. But, what if we want to add in another JavaScript dependency?</p>
+
+<p>Go back to your favorite terminal and try this:</p>
+
+<p><pre>$ bower search backbone</pre></p>
+
+<p><img src="img/bower-search-backbone.png" /></p>
+
+<p>Ok, wow. That's... a lot. Maybe we should narrow that down.</p>
+
+<p><pre>
+$ bower search backbone.localstorage
+Search results:
+
+    backbone.localStorage git://github.com/jeromegn/Backbone.localStorage.git
+</pre></p>
+
+<p>There we go. Now we just have to install it.</p>
+
+<p><pre>
+$ bower install backbone.localStorage --save
+bower cloning git://github.com/jeromegn/Backbone.localStorage.git
+bower cached git://github.com/jeromegn/Backbone.localStorage.git
+bower fetching backbone.localStorage
+bower checking out backbone.localStorage#v1.1.4
+bower installing backbone.localStorage#v1.1.4
+</pre></p>
+
+<p>When working with multiple developers, it can be troublesome assuring everyone has the correct dependencies and matching versions. By using <code>--save</code> above, we are telling Bower to remember this new dependency, then write about it in our <code>bower.json</code> file. When another developer clones your project, they just have to run <code>bower install</code> to download every dependency, keeping everyone in sync. That's why <code>app/bower_components</code> is listed in your <code>.gitignore</code> file. Gone are the days of bloated repositories!</p>
+
+<p>Now that Bower has awesomed all over our application, go into <code>app/index.html</code> and update the <code>scripts/vendor.js</code> comment block:</p>
+
+<p><pre class="brush: html">
+&lt;!-- build:js scripts/vendor.js -->
+&lt;script src="bower_components/jquery/jquery.js"></script>
+&lt;script src="bower_components/underscore/underscore.js"></script>
+&lt;script src="bower_components/backbone/backbone.js"></script>
+&lt;script src="bower_components/backbone.localStorage/backbone.localStorage.js"></script>
+&lt;!-- endbuild -->
+</pre></p>
+
+<p>When you save the file, your browser will refresh and you'll have the new library ready to use. More specifically, <code>TodosCollection</code> will have it ready to use.</p>
+
+
+<h3>scripts/collections/todo-model.js</h3>
+<p><pre class="brush: js">
+/*global backboneApp, Backbone*/
+
+backboneApp.Models.TodoModel = Backbone.Model.extend({
+
+&#09;defaults: {
+&#09;&#09;title: '',
+&#09;&#09;completed: false
+&#09;},
+
+&#09;toggle: function () {
+&#09;&#09;this.save({
+&#09;&#09;&#09;completed: !this.get('completed')
+&#09;&#09;});
+&#09;}
+
+});
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>This is a pretty basic Backbone Model. We set some default properties for our To Do items and define a <code>toggle</code> function, simply used to switch between a "Complete" or "Incomplete" state.</p>
+
+
+<h3>scripts/views/todos-view.js</h3>
+<p><pre class="brush: js">
+/*global backboneApp, Backbone, JST*/
+
+backboneApp.Views.TodosView = Backbone.View.extend({
+
+&#09;el: '#todo-app',
+
+&#09;template: JST['app/scripts/templates/todos.ejs'],
+
+&#09;events: { /* ... */ },
+
+&#09;initialize: function () { /* ... */ },
+
+&#09;render: function () { /* ... */ },
+
+&#09;createTodo: function () { /* ... */ },
+
+&#09;addTodoItem: function () { /* ... */ },
+
+&#09;addAllTodoItems: function () { /* ... */ }
+
+});
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>This is our must robust Backbone View, so to see the definitions to these various properties and methods, please refer to the <a href="https://github.com/stephenplusplus/yo-backbone-todo-app">repository</a>.</p>
+
+<p>However, here are a couple key things:</p>
+
+<p><pre class="brush: js">el: '#todo-app'</pre></p>
+
+This selector matches that <code>&lt;section id="todo-app"></section></code> element we created in our <code>index.html</code> file. This will be our primary View.
+
+<p><pre class="brush: js">template: JST['app/scripts/templates/todos.ejs']</pre></p>
+
+<p>This little JST thing snuck in when we said <code>yo backbone:view ____`</code>. When our View's JavaScript file was created, the Backbone sub-generator created a matching template file for us: <code>app/scripts/templates/todos.ejs</code>.</p>
+
+<p>These <code>.ejs</code> template files will define our Views' HTML. When we run our app with <code>grunt server</code> or <code>grunt build</code>, our template files will be crushed together into a JavaScript object, <code>JST</code>. When our view file says <code>template: JST['path/to/view/template.ejs']</code>, this is referring to that object.</p>
+
+
+<h3>scripts/templates/todos.ejs</h3>
+<p><pre class="brush: html">
+&lt;form class="input-append">
+&#09;&lt;input type="text" id="new-todo" placeholder="What do you need to do today?">
+&#09;&lt;input type="submit" class="btn" value="Submit">
+&lt;/form>
+&lt;ul>
+&#09;&lt!-- Where our To Do items will go -->
+&lt;/ul>
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>Because we answered "Yes" to including Twitter Bootstrap for Sass when we scaffolded our application, I've added a couple of class names to pretty up our app. Feel free to style to your heart's content in the <code>styles/main.scss</code> file.</p>
+
+
+<h3>styles/main.scss</h3>
+<p><pre class="brush: css">
+@import 'sass-bootstrap/lib/bootstrap';
+
+.hero-unit {
+&#09;margin: 50px auto 0 auto;
+&#09;width: 300px;
+}
+
+form {
+&#09;margin-top: 10px;
+}
+
+ul,
+li form {
+&#09;margin: 0;
+&#09;padding: 0;
+}
+
+ul {
+&#09;list-style: none;
+}
+
+li form {
+&#09;display: none;
+}
+
+.editing {
+&#09;span {
+&#09;&#09;display: none;
+&#09;}
+
+&#09;form {
+&#09;&#09;display: inline-block;
+&#09;}
+}
+
+input:checked ~ span {
+&#09;text-decoration: line-through;
+}
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>Sass is pretty cool.</p>
+
+<p>Also, it's pretty cool that the browser still reloads when you make a change to your Sass files. If you've used Sass before, you know it can be a hassle to get a productive development environment set up quickly. Out of the Yeoman box, you're editing, watching, and reloading with none of the aforementioned hassle. Smiley face.</p>
+
+
+<h3>scripts/views/todo-view.js</h3>
+<p><pre class="brush: js">
+/*global backboneApp, Backbone, JST*/
+
+backboneApp.Views.TodoView = Backbone.View.extend({
+
+&#09;tagName: 'li',
+
+&#09;template: JST['app/scripts/templates/todo.ejs'],
+
+&#09;events: {
+&#09;&#09;'click input[type="checkbox"]': 'toggle',
+&#09;&#09;'dblclick span': 'toggleEdit',
+&#09;&#09;'submit form': 'toggleEdit'
+&#09;},
+
+&#09;initialize: function () { /* ... */ },
+
+&#09;render: function () { /* ... */ },
+
+&#09;toggle: function () { /* ... */ },
+
+&#09;toggleEdit: function () { /* ... */ }
+
+});
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>This <code>TodoView</code> will represent an individual item. It will be an <code><li></code> with some custom functionality handling click, double click, and submit events, enabling a user to edit and save a To Do item.</p>
+
+
+<h3>scripts/templates/todo.ejs</h3>
+<p><pre class="brush: html">
+&lt;input type="checkbox" <% if (completed) { %>checked<% } %>>
+&lt;form>
+&#09;&lt;input type="text" value="<%= title %>">
+&lt;/form>
+&lt;span>
+&#09;&lt;%= title %>
+&lt;/span>
+</pre></p>
+
+<h4>Thoughts</h4>
+
+<p>Simple enough. We're using some basic Underscore templating to spit out values and toggle a <code>checked</code> state on our checkbox.</p>
+
+
+<h2>To Do: Do It Again</h2>
+
+<p>Our To Do application is actually done! It's quite basic in functionality, but you should have a sense of how natural it is to develop an application using Yeoman and his Generator buddies. And even though the functionality is basic, none of the techniques we used to get here were "basic." We're using smart, efficient libraries (Sass, Backbone, Underscore) with a finely-tuned development process (Grunt, LiveReload, Compass), and it took us only a few terminal commands.</p>
+
+<p>If you're like me, you probably want to stop with the To Do stuff and start making your own applications. If you want to go play around, go for it! When you're done generating like a crazy person, come back and let's ship our To Do app.</p>
+
+
+<h2>To Do: Ship It</h2>
+
+<p>Let's put this thing in the water and see if she floats! Do NOT put your computer in the water. Wait, would a MacBook Air float? No, probably not. Hmm...</p>
+
+<p>That was a dangerous paragraph. Let's just get our app ready for production, safe and dry.</p>
+
+<p><code>grunt server</code> has been amazing, but it's time to meet his brother, <code>grunt build</code>. We talked about him a bit earlier, but let's go over a few more details.</p>
+
+<p>Here is what the <code>grunt build</code> task is defined as in your <code>Gruntfile.js</code>:</p>
+
+<p><pre class="brush: js">
+grunt.registerTask('build', [
+&#09;'clean:dist',    // Clears out your .tmp/ and dist/ folders
+&#09;'coffee',        // Compiles your CoffeeScript files (if any)
+&#09;'createDefaultTemplate', // Creates a JS file that sets up your JST object
+&#09;'jst',           // Compiles your `scripts/templates/` files
+&#09;'compass:dist',  // Compiles your Sassiness
+&#09;'useminPrepare', // Looks for those <!-- special blocks --> in your HTML
+&#09;'imagemin',      // Optimizes your images!
+&#09;'htmlmin',       // Minifies your HTML files
+&#09;'concat',        // Task used to concatenate your JS and CSS
+&#09;'cssmin',        // Minifies your CSS files
+&#09;'uglify',        // Task used to minify your JS
+&#09;'copy',          // Copies files from .tmp/ and app/ into dist/
+&#09;'rev',           // Creates unique hashes and re-names your new JS/CSS files
+&#09;'usemin'         // Updates the references in your HTML with the new files
+]);
+</pre></p>
+
+<p>So, that thing is pretty legit. All of these tasks are defined inside of <code>Gruntfile.js</code>, so feel free to poke and tweak around to customize your application's build. It's highly likely you won't need to do any customization at all, but it's there if you need to.</p>
+
+<p>Oh, one other thing. <code>grunt build</code> is actually wrapped inside of another task.</p>
+
+
+<h3>Grunt</h3>
+
+<p>Simply running <code>grunt</code> will execute the <code>default</code> task:</p>
+
+<p><pre class="brush: js">
+grunt.registerTask('default', [
+&#09;'jshint',
+&#09;'test',
+&#09;'build'
+]);
+</pre></p>
+
+<p>Those first two tasks, <code>jshint</code> and <code>test</code> are easy to overlook when rushing an app out the door, but are very important.</p>
+
+
+<h3>JSHint</h3>
+
+<p>The <code>jshint</code> task will consult with your <code>.jshintrc</code> file to learn your preferences, then scan through all of your JS files to make sure your rules are abided by. To get the full run down of your options with JSHint, check the <a href="http://www.jshint.com/docs/#options">JSHint documentation</a>.</p>
+
+
+<h3>Test</h3>
+
+<p>The `test` task looks like this:</p>
+
+<p><pre class="brush: js">
+grunt.registerTask('test', [
+&#09;'clean:server',
+&#09;'coffee',
+&#09;'createDefaultTemplate',
+&#09;'jst',
+&#09;'compass',
+&#09;'connect:test',
+&#09;'mocha'
+]);
+</pre></p>
+
+<p>It basically does enough to create and serve your application for your test framework, Mocha, to execute your tests.</p>
+
+<p>Oh crap, tests.</p>
+
+<p>Next door to your `app/` and `dist/` directories, this little `test/` buckaroo has been waiting for our attention. Aww.</p>
+
+<p>If you open that up, you'll see <code>test/</code> has its own <code>bower.json</code> and <code>index.html</code>, as well as a <code>spec/</code> directory. Your tests will have some dependencies of their own, the <a href="http://chaijs.com">Chai Assertion Library</a> and <a href="http://visionmedia.github.io/mocha">Mocha testing framework</a>.</p>
+
+<p>Expand that <code>spec/</code> directory and you'll see a <code>test.js</code> file that looks something like this:</p>
+
+<p><pre class="brush: js">
+/*global describe, it */
+'use strict';
+
+(function () {
+&#09;describe('Give it some context', function () {
+&#09;&#09;describe('maybe a bit more context here', function () {
+&#09;&#09;&#09;it('should run here few assertions', function () {
+
+&#09;&#09;&#09;});
+&#09;&#09;});
+&#09;});
+})();
+</pre></p>
+
+<p>Ok, looks like we could use a pull request to correct some grammar. Anybody?</p>
+
+<p>If you haven't written your own tests before, you'll see terms like <code>describe</code>, <code>it</code>, <code>before</code>, <code>beforeEach</code>, <code>after</code>, and <code>afterEach</code> pop up. <code>describe</code> is a wrapper for a group of related tests, <code>____Each</code> are optional functions that will execute <code>before</code> or <code>after</code> your test(s), and each <code>it</code> is a specific test.</p>
+
+<p>Try running a <code>grunt test</code> to see all the magic unfold.</p>
+
+<p><img src="img/todo-grunt-test.png" /></p>
+
+<p>You should play around and see if you can write some tests for our To Do application. A few ideas for test cases might be:</p>
+
+<p><ul>
+  <li>Does creating a new To Do item get saved in localStorage?</li>
+  <li>Does a new To Do item's title get trimmed (removing extra whitespace)?</li>
+  <li>When editing a To Do item, does deleting the title, then saving remove the To Do item from localStorage?</li>
+</ul></p>
+
+<p>There's only one more thing to do.</p>
+
+
+<h3>Press Enter</h3>
+
+<p><pre>$ grunt</pre></p>
+
+<p>You should see our favorite words: <code>Done, without errors.</code></p>
+
+
+<h2>Finding Yeoman</h2>
+
+<p>Yeoman is still quite young; he just turned one! Things are pretty great now and they're only going to get better. However, like all one year olds, Yeoman is still learning to walk without falling, and talk without drooling. You just might run into a bug or two. In times like these, think of him like your cute little nephew. He needs positive role models in his life, so help him learn!</p>
+
+<p>That got real children's book-y, real fast. I'll grow it up a little: there are bugs and we need your help to squash the doody out of them (I said "a little"). Even if it's not a bug, but you're like, "I know a MUCH faster Grunt plug-in this generator could use," report it to the appropriate generator's issue tracker.</p>
+
+<p>If you want to learn some more about Yeoman or just get to know the team, you'll find us peppered all over the following sites.</p>
+
+<p><ul>
+  <li><a href="http://yeoman.io">yeoman.io</a></li>
+  <li><a href="http://yeoman.io/gettingstarted.html">Getting Started Guide</a></li>
+  <li><a href="http://twitter.com/yeoman">@yeoman on Twitter</a></li>
+  <li><a href="https://plus.google.com/101063139999404044459">+Yeoman on Google+</a></li>
+</ul></p>
+
+<p>If you're just plain stuck, try one of the following resource for a helping hand.</p>
+
+<p><ul>
+  <li><a href="http://stackoverflow.com/questions/tagged/yeoman">StackOverflow</a></li>
+  <li><a href="http://webchat.freenode.net/?channels=yeoman">#yeoman on IRC</a></li>
+</ul></p>
+
+<p>Yeoman is just one piece of the entire stack&mdash; <a href="http://npmjs.org">NPM</a>, <a href="http://nodejs.org">Node</a>, <a href="http://gruntjs.com">Grunt</a>, and <a href="http://bower.io">Bower</a>. It can be intimidating if you're unfamiliar with these, but it is crucial not to fear the curve! Learning will need to happen, and like always, it will probably need to happen the hard way before it really sticks.</p>
+
+<p>Psst, if you're using <code>sudo</code> before every command, run, don't walk, to <a href="https://gist.github.com/isaacs/579814">Node and NPM in 30 Seconds</a>. There, you'll find several scripts you can run to give control back to your user account. It will also help you install Node and NPM if you're starting from scratch.</p>
+
+
+<h2>Yo' Next Application - Will You Yo?</h2>
+
+<p>Like all tools, I believe Yeoman is something every developer should try. If you give it a shot and find it's not suitable for your task, I and the rest of the team would love to hear why. If you need a buddy to help you with your project, come find me. I'm always available around the links above, or just ping me on Twitter. I'm <a href="http://twitter.com/stephenplusplus">@stephenplusplus</a> or Stephen Sawchuk.</p>
+
+<p><img src="img/me.jpg" /></p>
+
+<p>Nice to meet you.</p>
+
+</div><!-- / content -->
+
+<footer role="contentinfo">
+<small>Smashing Magazine Template, based on responsive web design boilerplate by <a href="http://stuffandnonsense.co.uk">Andy Clarke</a>.</small>
+<small>&#8216;320 and Up&#8217; wouldn&#8217;t be possible without <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>, <a href="http://framelessgrid.com/">Frameless grid</a> and <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>. Licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>. The Font Awesome webfont, CSS, and LESS files are licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</small>
+</footer>
+
+</body>
+</html>
