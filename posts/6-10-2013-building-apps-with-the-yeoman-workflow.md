@@ -4,7 +4,7 @@
 
 Trick question. It's not a thing. It's this guy:
 
-<center>![](img/the-yo-man.png)</center>
+<center>![](img/yo.png)</center>
 
 Basically, he wears a top hat, lives in your computer, and waits for you to tell him what kind of application you wish to create. As an example, scaffolding a web application would look something like this:
 
@@ -270,7 +270,7 @@ While I was in the bathroom washing my hands, I had a vision.
 [ Add a New To Do ] ← input
 
 checkbox
-- clicking will draw a line through the title of the todo item
+- clicking will draw a line through the title of the to do item
  ↓
 [x] To Do Item #1
 [ ] To Do Item #2
@@ -303,7 +303,7 @@ Check out your index.html:
 
 How 'bout that! It not only created and placed files in relevant directories, it even included them in your HTML for you.
 
-I've created a repository for our To Do application-- [go check it out](https://github.com/stephenplusplus/yo-backbone-todo-app). We'll take a glance at the files together, but please refer to the repository to get the full code.
+I've created a repository for our To Do application&mbdash; [go check it out](https://github.com/stephenplusplus/yo-backbone-todo-app). We'll take a glance at the files together, but please refer to the repository to get the full code.
 
 ### `scripts/main.js`
 ```js
@@ -469,7 +469,7 @@ These `.ejs` template files will define our Views' HTML. When we run our app wit
 ```html
 <form class="input-append">
     <input type="text" id="new-todo" placeholder="What do you need to do today?">
-    <input type="submit" class="btn">Submit</button>
+    <input type="submit" class="btn" value="Submit">
 </form>
 <ul>
     <!-- Where our To Do items will go -->
@@ -712,7 +712,7 @@ If you're just plain stuck, try one of the following resource for a helping hand
 - [StackOverflow](http://stackoverflow.com/questions/tagged/yeoman)
 - [#yeoman on IRC](http://webchat.freenode.net/?channels=yeoman)
 
-Yeoman is just one piece of the entire stack-- [NPM](http://npmjs.org), [Node](http://nodejs.org), [Grunt](http://gruntjs.com), and [Bower](http://bower.io). It can be intimidating if you're unfamiliar with these, but it is crucial not to fear the curve! Learning will need to happen, and like always, it will probably need to happen the hard way before it really sticks.
+Yeoman is just one piece of the entire stack&mdash; [NPM](http://npmjs.org), [Node](http://nodejs.org), [Grunt](http://gruntjs.com), and [Bower](http://bower.io). It can be intimidating if you're unfamiliar with these, but it is crucial not to fear the curve! Learning will need to happen, and like always, it will probably need to happen the hard way before it really sticks.
 
 Psst, if you're using `sudo` before every command, run, don't walk, to [Node and NPM in 30 Seconds](https://gist.github.com/isaacs/579814). There, you'll find several scripts you can run to give control back to your user account. It will also help you install Node and NPM if you're starting from scratch.
 
