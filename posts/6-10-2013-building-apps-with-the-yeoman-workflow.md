@@ -303,7 +303,7 @@ Check out your index.html:
 
 How 'bout that! It not only created and placed files in relevant directories, it even included them in your HTML for you.
 
-I've created a repository for our To Do application&mbdash; [go check it out](https://github.com/stephenplusplus/yo-backbone-todo-app). We'll take a glance at the files together, but please refer to the repository to get the full code.
+I've created a repository for our To Do application&mbdash; [go check it out](https://github.com/addyosmani/yeoman-examples/tree/master/backbone-localStorage-todos). We'll take a glance at the files together, but please refer to the repository to get the full code.
 
 ### `scripts/main.js`
 ```js
@@ -446,7 +446,7 @@ backboneApp.Views.TodosView = Backbone.View.extend({
 });
 ```
 #### Thoughts
-This is our must robust Backbone View, so to see the definitions to these various properties and methods, please refer to the [repository](https://github.com/stephenplusplus/yo-backbone-todo-app).
+This is our must robust Backbone View, so to see the definitions to these various properties and methods, please refer to the [repository](https://github.com/addyosmani/yeoman-examples/tree/master/backbone-localStorage-todos).
 
 However, here are a couple key things:
 
