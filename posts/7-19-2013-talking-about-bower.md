@@ -1,5 +1,7 @@
 # Bower Conventions
 
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://stephenplusplus.github.io/me-but-you/#7-19-2013-talking-about-bower" data-text=".@bower is a bird, not a unicorn." data-via="stephenplusplus" data-related="bower" data-hashtags="bower">Tweet</a>
+
 ## What is Bower?
 
 [Bower](http://bower.io) is a package manager for client-side code. This can be Sass stuff, CSS stuff, but mostly JavaScript stuff.
@@ -191,3 +193,5 @@ If you're a package author, please consider the developer I just [pretend] spoke
 - Use the `main` property. There are tools out there that are trying to make the developer's life easier by wiring up their Bower components into their require.js configuration, or index.html file, etc. These tools can't sift through 35 JavaScript files and reliably detect what the actual file to include is.
 
 - Don't talk to pretend people. I'm losing my mind.
+
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://stephenplusplus.github.io/me-but-you/#7-19-2013-talking-about-bower" data-text=".@bower is a bird, not a unicorn." data-via="stephenplusplus" data-related="bower" data-hashtags="bower">Tweet</a>
