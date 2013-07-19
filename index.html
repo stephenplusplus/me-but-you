@@ -8,14 +8,30 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>Me, but you.</title>
   <link rel="stylesheet" href="bower_components/showup/showup.css">
+  <style>
+    body > aside {
+      width: 95%;
+      margin: 20px auto;
+      -webkit-filter: grayscale(100%);
+    }
+    body > aside iframe {
+      display: block;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
   <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
   <![endif]-->
+  <aside>
+    <a href="https://twitter.com/share" class="twitter-share-button" data-via="stephenplusplus">Tweet</a>
+    <a href="https://twitter.com/stephenplusplus" class="twitter-follow-button" data-show-count="false">Follow @stephenplusplus</a>
+    <iframe src="http://ghbtns.com/github-btn.html?user=stephenplusplus&type=follow&count=true"
+      allowtransparency="true" frameborder="0" scrolling="0" width="165" height="20"></iframe>
+  </aside>
   <div class="gutter"></div>
   <div class="container"></div>
-  <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
   <script src="bower_components/showdown/compressed/showdown.js"></script>
   <script src="bower_components/showup/showup.js"></script>
   <script>
@@ -26,5 +42,6 @@
       container: document.querySelector('.container')
     });
   </script>
+  <script src="//platform.twitter.com/widgets.js"></script>
 </body>
 </html>
