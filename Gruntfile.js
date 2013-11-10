@@ -100,7 +100,7 @@ module.exports = function (grunt) {
 
       var postWords = [];
 
-      while (postWords.length < 10) {
+      while (postWords.length < 20) {
         postWords.push(wordMap[postWords.length] && wordMap[postWords.length].name || '');
       }
 
@@ -114,7 +114,9 @@ module.exports = function (grunt) {
       var file = '# ' + grunt.file.readJSON('config.json').name + '\n';
       var lastDate;
 
-      posts.reverse().forEach(function (post) {
+      posts.sort(function (a, b) {
+        return parseInt(a.match(/^(\d*)-/)[1]) <= parseInt(b.match(/^(\d*)-/)[1]);
+      }).forEach(function (post) {
         var postDate = post.replace(/((\d*-\d*-\d*).*)/, '$2');
         var title = post.replace(postDate, '').replace(/\s+/g, ' ').trim();
 
