@@ -2,8 +2,6 @@
   "name": "me-but-you",
   "version": "0.0.0",
   "dependencies": {
-    "showup": "~0.0.2",
-    "SyntaxHighlighter": "~3.0.83",
-    "jquery": "~2.0.3"
+    "showup": "~0.0.2"
   }
 }
