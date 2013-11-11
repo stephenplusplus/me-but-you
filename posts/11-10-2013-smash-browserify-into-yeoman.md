@@ -112,14 +112,11 @@ var happyLanguage = {
 
 var meanThings = 'browserify isn\'t special you stinky monkeyhead';
 
-meanThings = _.map(meanThings.split(' '), function (word) {
+function replaceWord(word) {
+  return happyLanguage[word] || word;
+}
 
-  if (happyLanguage[word]) {
-    return happyLanguage[word];
-  }
-
-  return word;
-}).join(' ');
+meanThings = _.map(meanThings.split(' '), replaceWord).join(' ');
 
 document.body.innerHTML = meanThings;
 ```
