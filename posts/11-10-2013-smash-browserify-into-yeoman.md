@@ -90,3 +90,36 @@ var hi = require('./hi-from-stephen');
 
 console.log(hi()); // hi!
 ```
+
+## Use npm-y code.
+
+#### `Terminal`
+
+```bash
+$ npm install lodash --save
+```
+
+#### `app/scripts/main.js`
+
+```js
+var _ = require('lodash');
+
+var happyLanguage = {
+  'isn\'t': 'is',
+  stinky: 'silly',
+  monkeyhead: 'banana buddy'
+};
+
+var meanThings = 'browserify isn\'t special you stinky monkeyhead';
+
+meanThings = _.map(meanThings.split(' '), function (word) {
+
+  if (happyLanguage[word]) {
+    return happyLanguage[word];
+  }
+
+  return word;
+}).join(' ');
+
+document.body.innerHTML = meanThings;
+```
