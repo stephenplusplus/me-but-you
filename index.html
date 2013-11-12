@@ -8,17 +8,54 @@
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
   <title>Me, but you.</title>
   <link rel="stylesheet" href="bower_components/showup/showup.css">
+  <style>
+    body {
+      margin: 0;
+    }
+    body > aside {
+      background-color: #eee;
+      padding: 16px;
+      border-bottom: 1px dotted #bbb;
+    }
+    body > aside aside {
+      background-color: #aaa;
+      color: #fff;
+      padding: 20px 30px 10px 10px;
+      font-size: 28px;
+      border-bottom: 1px dotted #eee;
+    }
+    body > aside nav {
+      background-color: #ccc;
+      padding: 20px 10px 10px 10px;
+      border-bottom: 1px dotted #aaa;
+    }
+    @media (min-width: 500px) {
+      body > aside {
+        margin-bottom: 70px;
+      }
+      body > aside aside {
+        float: left;
+      }
+      body > aside nav {
+        float: left;
+      }
+    }
+  </style>
 </head>
 <body>
   <!--[if lt IE 7]>
     <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
   <![endif]-->
   <aside>
-    <center><!--yep.-->
-      <a href="https://github.com/stephenplusplus">stephen githubs</a> ;&nbsp;
-      <a href="https://twitter.com/stephenplusplus">stephen tweets</a> ;
-      <a href="http://sawchuk.me">stephenstephenstephen</a> ;
-    </center>
+    <aside>
+      stephen sawchuk.
+    </aside>
+    <nav>
+      <a href="/#">blog</a>,
+      <a href="https://github.com/stephenplusplus">github</a>,
+      <a href="https://twitter.com/stephenplusplus">tweets</a>,
+      <a href="http://sawchuk.me">hi</a>
+    </nav>
   </aside>
   <div class="gutter"></div>
   <div class="container"></div>
