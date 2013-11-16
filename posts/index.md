@@ -1,5 +1,7 @@
 # me, but you.
 
+### Saturday, November 16th, 2013
+#### [11-16-2013 - Use Brackets To Fix A Todomvc Bug](#11-16-2013-use-brackets-to-fix-a-todomvc-bug)
 ### Sunday, November 10th, 2013
 #### [11-10-2013 - Smash Browserify Into Yeoman](#11-10-2013-smash-browserify-into-yeoman)
 ### Friday, July 19th, 2013
