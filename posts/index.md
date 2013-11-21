@@ -1,5 +1,7 @@
 # me, but you.
 
+### Thursday, November 21st, 2013
+#### [11-21-2013 - Globalize Your Gitignore](#11-21-2013-globalize-your-gitignore)
 ### Saturday, November 16th, 2013
 #### [11-16-2013 - Use Brackets To Fix A Todomvc Bug](#11-16-2013-use-brackets-to-fix-a-todomvc-bug)
 ### Sunday, November 10th, 2013
