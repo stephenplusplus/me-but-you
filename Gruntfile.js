@@ -115,7 +115,9 @@ module.exports = function (grunt) {
       var lastDate;
 
       posts.sort(function (a, b) {
-        return parseInt(a.match(/^(\d*)-/)[1]) <= parseInt(b.match(/^(\d*)-/)[1]);
+        return parseInt(a.match(/^(\d*)-/)[1]) >= parseInt(b.match(/^(\d*)-/)[1]);
+      }).sort(function (a, b) {
+        return parseInt(a.match(/^\d*-\d*-(\d{4})/)[1]) <= parseInt(b.match(/^\d*-\d*-(\d{4})/)[1]);
       }).forEach(function (post) {
         var postDate = post.replace(/((\d*-\d*-\d*).*)/, '$2');
         var title = post.replace(postDate, '').replace(/\s+/g, ' ').trim();
