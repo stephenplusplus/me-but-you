@@ -9,6 +9,10 @@
   <title>Me, but you.</title>
   <link rel="stylesheet" href="bower_components/showup/showup.css">
   <style>
+    html,
+    body {
+      height: 100%;
+    }
     body {
       margin: 0;
     }
@@ -32,6 +36,9 @@
     }
     .animating > aside {
       padding-left: 400px;
+    }
+    .container.cols {
+      height: calc(100% - 120px);
     }
     @media (min-width: 500px) {
       body > aside {
